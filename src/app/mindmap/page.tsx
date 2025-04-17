@@ -8,9 +8,15 @@ import { getUserMindmaps } from '@/lib/getMindmaps';
 import { TaskadeSidebar } from "@/components/TaskadeSidebar";
 import { MindmapEditor } from "@/components/mirrorEditor";
 import { getMindmapById } from "@/lib/getMindmaps";
-export default async function MindmapPage({ searchParams }: { searchParams: { id?: string } }) {
+
+export default async function MindmapPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ id?: string }>; 
+}) {
   const session = await getServerSession(authOptions);
-  const mindmapId = searchParams.id;
+  const mindmapId = await searchParams.then((params) => params.id);
+  
   let htmlContent = `We suggest Firefox’s Picture-in-Picture mode for enhanced Youtube viewing experience.`;
   if (mindmapId) {
     const result = await getMindmapById(mindmapId as string);
