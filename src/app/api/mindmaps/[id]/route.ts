@@ -23,7 +23,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     const containerName = 'html';
     const containerClient = blobServiceClient.getContainerClient(containerName);
     const userEmail = session.user.email.toLowerCase();
-    console.log(containerClient)
+    
     // Update metadata
     const metadataBlobName = `user-${userEmail.split("@")[0]}/${id}.json`;
     const metadataBlobClient = containerClient.getBlockBlobClient(metadataBlobName);

@@ -67,9 +67,9 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
             </Button>
             <Button variant="outline" onClick={enterFullscreen}>Go Fullscreen</Button>
             <Button variant="outline" onClick={() => {
-              console.log(editorRef)
+           
               if (editorRef.current) {
-                console.log("here")
+              
                 const currentContent = editorRef.current.state.doc.toString();
                 const fixedContent = currentContent.replace(/\\n/g, '');
                 editorRef.current.dispatch({

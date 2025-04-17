@@ -15,13 +15,13 @@ export default async function MindmapPage({ searchParams }: { searchParams: { id
   if (mindmapId) {
     const result = await getMindmapById(mindmapId as string);
     htmlContent = result.htmlContent;
-    console.log(htmlContent)
+  
   }
   if (!session?.user?.email) {
     redirect("/api/auth/signin"); // Redirect to login
   }
   const mindmaps = await getUserMindmaps(session.user.email);
-  console.log(session, mindmaps);
+
   return (
     <div className="flex h-screen">
           <div>

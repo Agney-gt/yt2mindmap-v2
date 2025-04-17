@@ -11,7 +11,6 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
   const editorContainerRef = useRef<HTMLDivElement | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [htmlContent, setHtmlContent] = useState(htmlContents);
-  console.log(session)
 
   // 1️⃣ Create editor once on mount
   useEffect(() => {

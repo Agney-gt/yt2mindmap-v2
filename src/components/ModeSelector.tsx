@@ -90,7 +90,7 @@ const ModeSelector = ({ editorRef, session }: ModeSelectorProps) => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ taskId, email: session?.user?.email }),
         });
-        console.log("Webhook submitted successfully.");
+      
         await checkTaskStatus(taskId);
       } else {
         console.error("Failed to submit webhook:", await response.text());
@@ -125,12 +125,12 @@ const ModeSelector = ({ editorRef, session }: ModeSelectorProps) => {
         const res = await fetch(`/api/webhook?taskId=${taskId}`);
         const data = await res.json();
         setCurrentSteps(data.status);
-        console.log(data);
+     
         if (data.task.status == 'complete') {
           clearInterval(messageInterval);
           setLoading(false);
           setError(null);
-          console.log("Task completed");
+         
           await new Promise(resolve => setTimeout(resolve, 2000));
           fetchHtmlContent(taskId);
           setTaskId(taskId);
