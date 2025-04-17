@@ -11,13 +11,7 @@ import { getMindmapById } from "@/lib/getMindmaps";
 export default async function MindmapPage({ searchParams }: { searchParams: { id?: string } }) {
   const session = await getServerSession(authOptions);
   const mindmapId = searchParams.id;
-  let htmlContent = `Firefox’s Picture-in-Picture mode for algorithm videos or the Research Assistant 
-
-on the right sidebar can get you video links easily.
-
-Turns out, clarity isn’t about stuffing more into your brain; 
-
-it’s about seeing what’s already there.`;
+  let htmlContent = `We suggest Firefox’s Picture-in-Picture mode for enhanced Youtube viewing experience.`;
   if (mindmapId) {
     const result = await getMindmapById(mindmapId as string);
     htmlContent = result.htmlContent;
@@ -40,7 +34,7 @@ it’s about seeing what’s already there.`;
         <div className="flex-1 text-center">
      
             <h1 className="flex justify-center text-3xl font-bold items-center tracking-tighter sm:text-4xl md:text-5xl mb-6">
-                Youtube to <span className="text-purple-200">MindMap</span>
+                Youtube to <span className="text-purple-100">   MindMap</span>
             </h1>
             <div className="flex">
             <MindmapEditor session={session} htmlContents={htmlContent}/>
