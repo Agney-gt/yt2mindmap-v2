@@ -36,7 +36,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
       editorRef.current?.destroy();
       editorRef.current = null;
     };
-  }, [htmlContent]); // 👈 empty dependency array = run only once on mount
+  }, []); // 👈 empty dependency array = run only once on mount
 
   // 2️⃣ Update editor + iframe when htmlContents changes (e.g. from DB/API)
   useEffect(() => {
@@ -66,7 +66,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
         />
         <iframe
           title="HTML Preview"
-          id="view"
+          id="mindmapView"
           ref={iframeRef}
           className="w-3/4 h-full border border-gray-300 mb-4 mt-4"
           srcDoc={htmlContent}

@@ -11,7 +11,13 @@ import { getMindmapById } from "@/lib/getMindmaps";
 export default async function MindmapPage({ searchParams }: { searchParams: { id?: string } }) {
   const session = await getServerSession(authOptions);
   const mindmapId = searchParams.id;
-  let htmlContent = "";
+  let htmlContent = `Firefox’s Picture-in-Picture mode for algorithm videos or the Research Assistant 
+
+on the right sidebar can get you video links easily.
+
+Turns out, clarity isn’t about stuffing more into your brain; 
+
+it’s about seeing what’s already there.`;
   if (mindmapId) {
     const result = await getMindmapById(mindmapId as string);
     htmlContent = result.htmlContent;

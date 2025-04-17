@@ -13,10 +13,6 @@ interface mindmapButtonsProps {
 
 }
 const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) => {
-  //const [inputValue, setInputValue] = useState('');
-
-  //const editorRef = useRef<EditorView | null>(null);
-  //const [TaskId, setTaskId] = useState('');
 
   const [saving, setSaving] = useState(false);
   
@@ -55,7 +51,7 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
   };
   
   const enterFullscreen = () => {
-    const iframe = document.getElementById('mindmap') as HTMLIFrameElement;
+    const iframe = document.getElementById('mindmapView') as HTMLIFrameElement;
     if (iframe?.requestFullscreen) {
       iframe.requestFullscreen();
     }
