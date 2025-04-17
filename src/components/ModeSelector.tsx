@@ -134,7 +134,7 @@ const ModeSelector = ({ editorRef, session }: ModeSelectorProps) => {
           await new Promise(resolve => setTimeout(resolve, 2000));
           fetchHtmlContent(taskId);
           setTaskId(taskId);
-          router.push(`/mindmap-ssr?id=${taskId}`);
+          router.push(`/mindmap?id=${taskId}`);
           return data.data;
         }
         await new Promise(resolve => setTimeout(resolve, interval));
