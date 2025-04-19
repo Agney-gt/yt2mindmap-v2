@@ -44,7 +44,7 @@ export default function Home() {
                  
                   <div className="absolute bottom-1 left-4 right-4 rounded-lg bg-background/90 p-2 backdrop-blur">
                     <p className="text-xs sm:text-sm font-medium">
-                    &quot;Thought long hours were key but 5 minutes of focussed mapping proved otherwise.&quot;
+                    &quot;Thought long hours were key but 10 minutes of focused mapping supercharged my notes.&quot;
                     </p>
                   </div>
                 </div>
