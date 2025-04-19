@@ -210,10 +210,10 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
                   <div className="flex flex-col items-center justify-center">
                     <Input
                       id="input"
-                      placeholder="Mindmap content"
+                      placeholder="https://www.youtube.com/watch?v=5nTuScU70As"
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
-                      className="mt-2 pl-2 pr-2 w-1/2 mb-6"
+                      className="mt-2 pl-2 pr-2 w-1/3 mb-6 resize border overflow-auto"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
