@@ -4,13 +4,14 @@ import { EditorView, basicSetup } from "codemirror";
 import { html } from "@codemirror/lang-html";
 import ModeSelector from "@/components/ModeSelector";
 import { Session } from "next-auth";
-
+import MindmapButtons from "@/components/mindmapButtons";
 
 export function MindmapEditor({ session, htmlContents }: { session: Session, htmlContents: string }) {
   const editorRef = useRef<EditorView | null>(null);
   const editorContainerRef = useRef<HTMLDivElement | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [htmlContent, setHtmlContent] = useState(htmlContents);
+  const [taskId, setTaskId] = useState('');
 
   // 1️⃣ Create editor once on mount
   useEffect(() => {
@@ -57,7 +58,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
   return (
     
     <div className="flex flex-col w-screen">
-      <ModeSelector editorRef={editorRef} session={session} />
+      <ModeSelector editorRef={editorRef} session={session} setTaskId={setTaskId} />
       <div id="mindmap" className="w-[90vw] h-[700px] ml-[40px] flex flex-col md:flex-row gap-4">
         <div
           ref={editorContainerRef}
@@ -71,7 +72,10 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
           srcDoc={htmlContent}
           allowFullScreen
         />
-      </div></div>
+      </div>
+      <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} />
+      </div>
+      
     
   );
 }

@@ -16,10 +16,10 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Sometimes, the key to growth is hidden in plain sight
+                   YouTube videos to mind maps in one click!
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Honestly, I didnt think I would find anything beyond entertainment on YouTube, but heres what started shifting when I built this app.
+                   Instead of re-watching, visualize core concepts and iterate for retention! Powered by GPT-4o
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -38,7 +38,7 @@ export default function Home() {
                   width={1574}
                   height={832}
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full scale-[2]"
                   priority
                 />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>

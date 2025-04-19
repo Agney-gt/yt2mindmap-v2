@@ -9,13 +9,14 @@ import { Session } from 'next-auth'; // Ensure this import matches your project 
 import { EditorView } from '@codemirror/view'; // Ensure this import matches your project setup
 import PricingPortal from "@/components/PricingPortal";
 import { useRouter } from 'next/navigation';
-import MindmapButtons from './mindmapButtons';
+import { useMemo } from 'react';
 interface ModeSelectorProps {
   editorRef: React.RefObject<EditorView | null>;
   session: Session;
+  setTaskId: (taskId: string) => void;
 
 }
-const ModeSelector = ({ editorRef, session }: ModeSelectorProps) => {
+const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [, setHtmlContent] = useState("");
   const [mode, setMode] = useState<'youtube' | 'longtext'>('youtube');
   const [isVerified, setIsVerified] = useState(false);
@@ -23,8 +24,14 @@ const ModeSelector = ({ editorRef, session }: ModeSelectorProps) => {
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [taskId, setTaskId] = useState('');
   const router = useRouter();
+  const YouTubeEmbedMemo = useMemo(() => {
+    return inputValue.includes("https://www.youtube.com/") ? (
+      <div className="w-full max-w-3xl aspect-video mt-12 rounded-xl overflow-hidden">
+        <YouTubeEmbed videoid={inputValue.split("=")[1]} height={16} />
+      </div>
+    ) : null;
+  }, [inputValue]);
   const fetchHtmlContent = async (taskId: string) => {
     //setLoading(true);
     try {
@@ -209,6 +216,11 @@ const ModeSelector = ({ editorRef, session }: ModeSelectorProps) => {
                       className="mt-2 pl-2 pr-2 w-1/2 mb-6"
                     />
                   </div>
+                  <div className="flex flex-col items-center justify-center">
+                   {YouTubeEmbedMemo}
+                      {/* <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} /> */}
+                      
+                    </div>
               
                   <Button variant="default" onClick={handleSubmitWebhook} disabled={loading}>
                     {loading? <Loader2 className="animate-spin w-4 h-4" /> : 'Generate Mindmap'}
@@ -230,16 +242,7 @@ const ModeSelector = ({ editorRef, session }: ModeSelectorProps) => {
               </div>
             )}
             </div>
-            <div className="flex flex-col items-center justify-center">
-            {inputValue.includes("https://www.youtube.com/") && (
-              <div className="w-full max-w-3xl aspect-video mt-12 rounded-xl overflow-hidden">
-                <YouTubeEmbed videoid={inputValue.split("=")[1]} height={16} />
-                
-              </div>
-            )}
-            <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} />
             
-          </div>
 
       </div>
       

@@ -62,16 +62,24 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
 
             
             <div className="flex space-x-2 mb-4 mt-10" id="buttons">
-            <Button variant="outline" onClick={handleSave} disabled={saving}>
+            <Button variant="default" onClick={handleSave} disabled={saving}>
               {saving ? <Loader2 className="animate-spin w-4 h-4" /> : 'Save Changes'}
             </Button>
-            <Button variant="outline" onClick={enterFullscreen}>Go Fullscreen</Button>
-            <Button variant="outline" onClick={() => {
+            <Button variant="default" onClick={enterFullscreen}>Go Fullscreen</Button>
+            <Button variant="default" onClick={() => {
            
               if (editorRef.current) {
-              
                 const currentContent = editorRef.current.state.doc.toString();
-                const fixedContent = currentContent.replace(/\\n/g, '');
+                const match = currentContent.match(/<div class="mermaid">([\s\S]*?)<\/div>/);
+                const extracted = match? match[1] : "";
+                const cleaned = extracted
+                  .replace(/\\n/g, '')
+                  .replace(/(?<!\()\(/g, '')
+                  .replace(/(?<!\))\)/g, '');
+
+                const fullMatch = match? match[0]: "";
+                const updatedMatch = `<div class="mermaid">${cleaned}</div>`;
+                const fixedContent = currentContent.replace(fullMatch, updatedMatch);
                 editorRef.current.dispatch({
                   changes: { from: 0, to: editorRef.current.state.doc.length, insert: fixedContent }
                 });
