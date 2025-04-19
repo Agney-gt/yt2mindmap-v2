@@ -59,7 +59,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
     
     <div className="flex flex-col w-screen">
       <ModeSelector editorRef={editorRef} session={session} setTaskId={setTaskId} />
-      <div id="mindmap" className="w-[90vw] h-[700px] ml-[40px] flex flex-col md:flex-row gap-4">
+      <div id="mindmap" className="w-[90vw] h-[700px] ml-[20px] flex flex-col md:flex-row gap-4">
         <div
           ref={editorContainerRef}
           className="text-left editor-container w-full md:w-1/2 h-full border border-gray-300 rounded-md p-2 bg-gray-50 overflow-auto mt-4"
