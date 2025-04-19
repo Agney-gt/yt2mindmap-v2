@@ -13,14 +13,14 @@ export function TaskadeSidebar() {
             {/* Toggle Button */}
             {isOpen && <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative  top-[10vh] bg-black p-2 rounded-l-md border border-r-0 border-gray-200 shadow-md hover:bg-gray-50 transition-colors pointer-events-auto"
+                className="relative top-[10vh] bg-black p-2 rounded-l-md border border-r-0 border-gray-200 shadow-md hover:bg-gray-50 transition-colors pointer-events-auto"
             >
                 {isOpen ? <ChevronRight className="text-white w-4 h-4" /> : <ChevronLeft className="text-white w-4 h-4" />}
             </button>}
 
             {/* Sidebar */}
             <div
-                className={`w-[calc(100%-20px)] md:w-[600px]
+                className={`w-[calc(100vw-20px)] md:w-[600px]
   h-full bg-white border-l border-gray-200 shadow-md 
   transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
                     } pointer-events-auto`}
