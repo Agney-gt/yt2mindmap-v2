@@ -41,10 +41,10 @@ export default function Home() {
                   className="object-cover w-full h-full scale-[2]"
                   priority
                 />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4 rounded-lg bg-background/90 p-4 backdrop-blur">
-                    <p className="text-sm font-medium">
-                    &quot;Ive learned more from 5 minutes of relaxed, focused mind mapping than from hours of passive watching.&quot;
+                 
+                  <div className="absolute bottom-1 left-4 right-4 rounded-lg bg-background/90 p-2 backdrop-blur">
+                    <p className="text-xs sm:text-sm font-medium">
+                    &quot;Thought long hours were key but 5 minutes of focussed mapping proved otherwise.&quot;
                     </p>
                   </div>
                 </div>
