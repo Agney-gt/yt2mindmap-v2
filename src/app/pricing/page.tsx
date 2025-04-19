@@ -145,11 +145,10 @@ export default function PricingPage() {
                 </CardHeader>
               <CardContent>
               <ul className="space-y-2 text-sm list-disc list-inside">
-                <li>I was skeptical about using AI without breaking the bank... until I found this approach. (No API Keys required)</li>
-                <li>We discovered a VC-backed startup with $5M in funding — leveraging their foundation helped us keep costs predictable.</li>
-                <li>AI infrastructure is becoming more affordable, much like how railroads, telecom, and compute commoditized over time.</li>
-                <li>Its intriguing how major players are driving costs down, echoing Jevons Paradox and making advanced tech accessible to more of us.</li>
-                <li>Curious how you can build AI apps on a shoestring budget? Read my book!</li>
+                <li>Skeptical about budget-friendly AI? I was too, until this no-API-key-needed trick worked.</li>
+                <li>We build on the shoulders of VC backed giants. Keeping our services reliable, stable and scalable.</li>
+                <li>Watching AI costs drop feels like watching Jevons Paradox in action — just like the railroads, telecom and compute before it.</li>
+                <li>Here’s a little secret: building AI apps doesn’t have to break the bank. Want to know how?</li>
               </ul>
                   <Button className="mt-6 w-full">Buy Now</Button>
                   <p className="mt-2 text-xs text-center text-muted-foreground">Its always the same old story</p>

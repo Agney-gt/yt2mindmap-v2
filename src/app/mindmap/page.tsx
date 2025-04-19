@@ -17,7 +17,7 @@ export default async function MindmapPage({
   const session = await getServerSession(authOptions);
   const mindmapId = await searchParams.then((params) => params.id);
   
-  let htmlContent = `We suggest Firefox’s Picture-in-Picture mode for enhanced Youtube viewing experience.`;
+  let htmlContent = `Use Google's Picture-in-Picture extension and Canva’s Grab Text for the best viewing and editing experience.`;
   if (mindmapId) {
     const result = await getMindmapById(mindmapId as string);
     htmlContent = result.htmlContent;

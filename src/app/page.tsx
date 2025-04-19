@@ -16,10 +16,10 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                   YouTube videos to mind maps in one click!
+                   Visualize what matters and make every video stick!
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                   Instead of re-watching, visualize core concepts and iterate for retention! Powered by GPT-4o
+                    Instantly map core concepts and iterate for retention! Powered by GPT-4o
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -34,7 +34,7 @@ export default function Home() {
               <div className="mx-auto flex items-center justify-center lg:justify-end">
               <div className="relative w-full max-w-[800px] aspect-[1574/832] overflow-hidden rounded-lg border bg-background shadow-xl">
                 <Image
-                  src="/78b7dcba-a8b6-4a11-b2ab-c8ad24cc0bc3.jpg"
+                  src="/mindmap.jpg"
                   width={1574}
                   height={832}
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
@@ -44,7 +44,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4 rounded-lg bg-background/90 p-4 backdrop-blur">
                     <p className="text-sm font-medium">
-                    &quot;Ive learned more from 10 minutes of mind mapping than from hours of passive watching.&quot;
+                    &quot;Ive learned more from 5 minutes of relaxed, focused mind mapping than from hours of passive watching.&quot;
                     </p>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ export default function Home() {
                   </li>
                   <li className="flex gap-2">
                     <ArrowRight className="h-5 w-5 text-green-500 shrink-0" />
-                    <span>Reinforce learning through structured reflection</span>
+                    <span>AI helps you get started, you make it better</span>
                   </li>
                 </ul>
                 <div className="mt-4 text-sm text-muted-foreground">
@@ -127,11 +127,11 @@ export default function Home() {
                     The Pareto Principle of Learning
                   </h2>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    A typical crash course might include 64 hours of lectures, 72 hours of discussions, and 32 hours of
-                    expert interviews...
+                    A typical crash course might include 64 hours of lectures, 1372 comments and discussions, and 2 hours of
+                    actual insights...
                   </p>
                   <p className="max-w-[600px] font-bold md:text-xl">
-                    But the truth? Youll only use 20% of what you watch.
+                    But the truth? We only use 20% of what we watch.
                   </p>
                 </div>
                 <ul className="space-y-2">
@@ -403,7 +403,8 @@ export default function Home() {
                       <span>No recurring fees.</span>
                     </li>
                   </ul>
-                  <SignInButton text="Get Started" />
+                  <div className='mt-4' >
+                  <SignInButton text="Get Started" /></div>
                 </CardContent>
               </Card>
               <Card className="border bg-background relative">
@@ -467,11 +468,10 @@ export default function Home() {
                 </CardHeader>
               <CardContent>
               <ul className="space-y-2 text-sm list-disc list-inside">
-                <li>I was skeptical about using AI without breaking the bank... until I found this approach. (No API Keys required)</li>
-                <li>We discovered a VC-backed startup with $5M in funding — leveraging their foundation helped us keep costs predictable.</li>
-                <li>AI infrastructure is becoming more affordable, much like how railroads, telecom, and compute commoditized over the.</li>
-                <li>Its intriguing how major players are driving costs down, echoing Jevons Paradox and making advanced tech accessible to more of us.</li>
-                <li>Curious how you can build AI apps on a shoestring budget? Read my book!</li>
+                <li>Skeptical about budget-friendly AI? I was too, until this no-API-key-needed trick worked.</li>
+                <li>We build on the shoulders of VC backed giants. Keeping our services reliable, stable and scalable.</li>
+                <li>Watching AI costs drop feels like watching Jevons Paradox in action — just like the railroads, telecom and compute before it.</li>
+                <li>Here’s a little secret: building AI apps doesn’t have to break the bank. Want to know how?</li>
               </ul>
                   {/* <Button className="mt-6 w-full">Buy Now</Button> */}
                   <p className="mt-2 text-xs text-center text-muted-foreground">Its always the same old story</p>
