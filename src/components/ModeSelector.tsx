@@ -117,14 +117,20 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     'Generating mindmap layout...',
     'Optimizing node connections...',
     'Applying visual styles...',
-    'Finalizing mindmap...'
+    'Finalizing mindmap...',
+    'We are experiencing heavy load, your mindmap will be ready soon <sup>TM</sup>'
   ];
   const [messageIndex, setMessageIndex] = useState(0);
   
   const checkTaskStatus = async (taskId: string, maxRetries = 20, interval = 5000) => {
     let attempts = 0;
     const messageInterval = setInterval(() => {
-      setMessageIndex(prev => (prev + 1) % loadingMessages.length);
+      setMessageIndex(prev => {
+        if (prev === loadingMessages.length - 1) {
+          return loadingMessages.length - 1; // Keep the index at the last message
+        }
+        return prev + 1; // Otherwise, increment the index
+      });
     }, 15000);
 
     while (attempts < maxRetries) {
@@ -231,7 +237,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
             )}
             {loading && (
               <div className="justify-center">
-                <p>{loadingMessages[messageIndex]}</p>
+                <p dangerouslySetInnerHTML={{ __html: loadingMessages[messageIndex] }} />
                 {CurrentStep && (
                   <div className="mt-2 text-center">
                     <p className="text-sm text-gray-600 capitalize">{CurrentStep}</p>

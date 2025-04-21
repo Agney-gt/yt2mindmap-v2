@@ -5,10 +5,17 @@ export async function POST(request: Request) {
 
   // Check if the input is a YouTube link
   const isYoutubeLink = url.includes('https://www.youtube.com/');
-
+  const youtubeWebhookUrls = [
+    'https://www.taskade.com/webhooks/flow/01JNNWZPBEBK343J2KFM3BRTCB',
+    'https://www.taskade.com/webhooks/flow/01JSBHB6N4AX3MSQ00TKD95NDV',
+    'https://www.taskade.com/webhooks/flow/01JSBHC35ZQE97QGWD59BTVGMR',
+    'https://www.taskade.com/webhooks/flow/01JSBHCZZDQD4JHS4Q3Z1G5M8Z',
+    'https://www.taskade.com/webhooks/flow/01JSBHE0RR77ZGN88N66FHZT01'    
+  ];
+  const defaultWebhookUrl = 'https://www.taskade.com/webhooks/flow/01JQB6NWP99Q61ZTVQMFH52XB6';
   const webhookUrl = isYoutubeLink
-    ? 'https://www.taskade.com/webhooks/flow/01JNNWZPBEBK343J2KFM3BRTCB'
-    : 'https://www.taskade.com/webhooks/flow/01JQB6NWP99Q61ZTVQMFH52XB6';
+  ? youtubeWebhookUrls[Math.floor(Math.random() * youtubeWebhookUrls.length)]
+  : defaultWebhookUrl;
 
   try {
     const response = await fetch(webhookUrl, {
