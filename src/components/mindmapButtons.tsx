@@ -74,8 +74,8 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
                 const extracted = match? match[1] : "";
                 const cleaned = extracted
                   .replace(/\\n/g, '')
-                  .replace(/(?<!\()\(/g, '')
-                  .replace(/(?<!\))\)/g, '');
+                  .replace(/(?<!\()\((?!\()/g, '')   // remove ( not part of ((
+                  .replace(/(?<!\))\)(?!\))/g, '');  // remove ) not part of ))
 
                 const fullMatch = match? match[0]: "";
                 const updatedMatch = `<div class="mermaid">${cleaned}</div>`;

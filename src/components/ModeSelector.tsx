@@ -80,22 +80,24 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
 
       }
       const taskId = Math.random().toString(36).substring(2);
+      const RedisSetresponse = await fetch('/api/webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ taskId, email: session?.user?.email }),
+      });
+      const { dbLength } = await RedisSetresponse.json();
+ 
       const response = await fetch('/api/yt-transcript-webhook-old', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: inputValue, taskId }),
+        body: JSON.stringify({ url: inputValue, taskId, dbLength }),
       });
-
+  
       if (response.ok) {
         // Increment chat usage count
         await fetch('/api/chat-usage', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' }
-        });
-        await fetch('/api/webhook', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ taskId, email: session?.user?.email }),
         });
       
         await checkTaskStatus(taskId);
@@ -122,7 +124,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   ];
   const [messageIndex, setMessageIndex] = useState(0);
   
-  const checkTaskStatus = async (taskId: string, maxRetries = 20, interval = 5000) => {
+  const checkTaskStatus = async (taskId: string, maxRetries = 200, interval = 5000) => {
     let attempts = 0;
     const messageInterval = setInterval(() => {
       setMessageIndex(prev => {
