@@ -15,7 +15,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string } // Make sure this matches the expected type
 }): Promise<Metadata> {
-  const blog = await getBlogData(params.slug)
+  const { slug } = await params;
+  const blog = await getBlogData(slug)
 
   return {
     title: `${blog.title} | YT2MindMap Blog`,
