@@ -45,9 +45,10 @@ export async function generateMetadata(
 export default async function BlogPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const blog = await getBlogData(params.slug)
+  const { slug } = await params
+  const blog = await getBlogData(slug)
 
   return (
     <div className="flex justify-center items-center min-h-screen py-10 px-4">
