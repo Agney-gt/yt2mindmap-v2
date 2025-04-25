@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogs = await getAllBlogs()
 
   const blogEntries = blogs.map((blog) => ({
-    url: `https://yt2mindmap-v2.vercel.app/blogs/${blog.id}`,
+    url: `https://www.y2map.com/blogs/${blog.id}`,
     lastModified: new Date(blog.date),
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -13,13 +13,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: "https://yt2mindmap-v2.vercel.app",
+      url: "https://www.y2map.com",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: "https://yt2mindmap-v2.vercel.app/blogs",
+      url: "https://www.y2map.com/blogs",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
