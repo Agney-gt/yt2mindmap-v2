@@ -13,9 +13,9 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string } // Make sure this matches the expected type
+  params: Promise<{ slug: string }> // Make sure this matches the expected type
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const slug  = await params.then((params) => params.slug);;
   const blog = await getBlogData(slug)
 
   return {
