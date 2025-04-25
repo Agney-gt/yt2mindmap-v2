@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
         "/mindmap/*"
       ]
     },
-    sitemap: ["https://yt2mindmap.com/sitemap.xml"]
+    sitemap: ["https://www.y2map.com/sitemap.xml"]
   };
 }
