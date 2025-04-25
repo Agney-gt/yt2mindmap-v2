@@ -1,6 +1,6 @@
 import { getBlogData, getAllBlogIds } from "@/lib/blogs"
 import Image from "next/image"
-import type { Metadata } from "next"
+import type { Metadata } from 'next'
 
 // Generate static params for all blog posts
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -9,13 +9,19 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 
-// Generate metadata for each blog post
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }> // Make sure this matches the expected type
-}): Promise<Metadata> {
-  const slug  = await params.then((params) => params.slug);;
+
+
+export async function generateMetadata(
+  {
+    params,
+  }: {
+    params: Promise<{ slug: string }>
+  }
+): Promise<Metadata> {
+  // Resolve the params promise
+  const { slug } = await params
+  
+  // Fetch the blog data using the slug
   const blog = await getBlogData(slug)
 
   return {
@@ -35,6 +41,7 @@ export async function generateMetadata({
     },
   }
 }
+
 
 
 export default async function BlogPage({
