@@ -58,11 +58,15 @@ export async function getUserMindmaps(email: string) {
     const metadataBlobClient = containerClient.getBlockBlobClient(`${prefix}.json`);
     const htmlBlobClient = containerClient.getBlockBlobClient(`${prefix}.html`);
   
-    const metadataResponse = await metadataBlobClient.download();
-    const metadataContent = await streamToString(metadataResponse.readableStreamBody || null);
-  
-    const htmlResponse = await htmlBlobClient.download();
-    const htmlContent = await streamToString(htmlResponse.readableStreamBody || null);
+    const [metadataResponse, htmlResponse] = await Promise.all([
+      metadataBlobClient.download(),
+      htmlBlobClient.download(),
+    ]);
+
+    const [metadataContent, htmlContent] = await Promise.all([
+      streamToString(metadataResponse.readableStreamBody || null),
+      streamToString(htmlResponse.readableStreamBody || null),
+    ]);
   
     return {
       metadata: JSON.parse(metadataContent),
