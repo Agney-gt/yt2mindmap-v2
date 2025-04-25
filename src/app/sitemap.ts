@@ -6,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogEntries = blogs.map((blog) => ({
     url: `https://www.y2map.com/blogs/${blog.id}`,
-    lastModified: new Date(blog.date),
+    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }))
