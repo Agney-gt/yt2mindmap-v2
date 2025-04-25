@@ -10,6 +10,17 @@ export const metadata: Metadata = {
   title: "Everything you need to know about Mindmaps!",
   description:
     "Explore research and insights into the art of mindmapping and find your style to enhance your personal growth and well-being.",
+  openGraph: {
+      title: "Blog | YT2MindMap",
+      description: "Read our latest articles about mind mapping, learning techniques, and YouTube knowledge extraction",
+      images: ["/opengraph-image.png"],
+  },
+  twitter:{
+    card: "summary_large_image",
+    title: "Blog | YT2MindMap",
+    description: "Read our latest articles about mind mapping, learning techniques, and YouTube knowledge extraction", 
+    images:["/opengraph-image.png"]
+  }
 };
 
 // Helper function to read and parse all Markdown files from /content/journals

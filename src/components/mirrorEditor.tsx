@@ -26,7 +26,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
             const newContent = update.state.doc.toString();
-            setHtmlContent(newContent);
+            setHtmlContent(newContent); // Update state when editor content changes
           }
         }),
       ],
@@ -36,7 +36,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
       editorRef.current?.destroy();
       editorRef.current = null;
     };
-  }, []); // 👈 empty dependency array = run only once on mount
+  }, [htmlContent]); // 👈 include htmlContent in the dependency array
 
   // 2️⃣ Update editor + iframe when htmlContents changes (e.g. from DB/API)
   useEffect(() => {
@@ -51,12 +51,11 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
       });
     }
     if (iframeRef.current) {
-      iframeRef.current.srcdoc = htmlContents;
+      iframeRef.current.srcdoc = htmlContents; // Update iframe's srcdoc
     }
-  }, [htmlContents]);
+  }, [htmlContents]); // Run only when htmlContents changes
 
   return (
-    
     <div className="flex flex-col w-screen">
       <ModeSelector editorRef={editorRef} session={session} setTaskId={setTaskId} />
       <div id="mindmap" className="w-[90vw] h-[700px] ml-[20px] flex flex-col md:flex-row gap-4">
@@ -68,14 +67,12 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
           title="HTML Preview"
           id="mindmapView"
           ref={iframeRef}
-          className="w-full md: w-3/4 h-full border border-gray-300 mb-4 mt-4"
-          srcDoc={htmlContent}
+          className="w-full md:w-3/4 h-full border border-gray-300 mb-4 mt-4"
+          srcDoc={htmlContent} // Binding srcDoc with htmlContent for live preview
           allowFullScreen
         />
       </div>
       <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} />
-      </div>
-      
-    
+    </div>
   );
 }
