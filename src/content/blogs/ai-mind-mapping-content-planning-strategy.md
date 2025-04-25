@@ -1,7 +1,7 @@
 ---
 title: "AI Mind Mapping for Content Planning & Strategy"
 description: " This page shows how marketers, writers, and content teams use AI mind mapping to structure campaigns, plan editorial calendars, map out SEO strategies, and visualize topic clusters."
-image: "https://eobemzviqxxlcrwuygkr.supabase.co/storage/v1/object/public/yt2insight//ai-mind-mapping-content-planning-strategy.png"
+image: "https://eobemzviqxxlcrwuygkr.supabase.co/storage/v1/object/public/yt2insight//ai-mind-mapping-content-planning-strategy.jpg"
 openGraph:
   title: "AI Mind Mapping for Content Planning & Strategy"
   description: " This page shows how marketers, writers, and content teams use AI mind mapping to structure campaigns, plan editorial calendars, map out SEO strategies, and visualize topic clusters."

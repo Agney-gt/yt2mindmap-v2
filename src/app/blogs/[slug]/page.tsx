@@ -1,79 +1,63 @@
-import fs from "fs/promises";
-import path from "path";
-import matter from "gray-matter";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import BlogLayout from "@/components/BlogLayout";
-// Define the props type explicitly
-interface JournalPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+import { getBlogData, getAllBlogIds } from "@/lib/blogs"
+import Image from "next/image"
+import type { Metadata } from "next"
+
+// Generate static params for all blog posts
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const blogIds = await getAllBlogIds()
+  return blogIds.map((id) => ({ slug: id }))
 }
 
 
-// Helper function to load and parse a Markdown file from /content/blogs
-async function getJournalContent(slug: string) {
-  const filePath = path.join(process.cwd(), "src","content", "blogs", `${slug}.md`);
-  try {
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const { data, content } = matter(fileContent);
-    return { metadata: data, content };
-  } catch {
-    return null;
-  }
-}
+// Generate metadata for each blog post
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string } // Make sure this matches the expected type
+}): Promise<Metadata> {
+  const blog = await getBlogData(params.slug)
 
-// Dynamically generate SEO metadata based on the Markdown frontmatter
-export async function generateMetadata({ params }: JournalPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const journal = await getJournalContent(slug);
-  if (!journal) {
-    return {
-      title: "Journal Not Found",
-      description: "The requested journal could not be found.",
-    };
-  }
   return {
-    title: journal.metadata.title,
-    description: journal.metadata.description,
+    title: `${blog.title} | YT2MindMap Blog`,
+    description: blog.excerpt,
     openGraph: {
-      title: journal.metadata.title,
-      description: journal.metadata.description,
-      images: [
-        {
-          url: journal.metadata.image || "/default-image.webp",
-          width: 1200,
-          height: 630,
-          alt: journal.metadata.title,
-        },
-      ],
+      title: blog.title,
+      description: blog.excerpt,
+      images: [blog.coverImage || "/opengraph-image.png"],
+      type: "article",
     },
-  };
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.excerpt,
+      images: [blog.coverImage || "/opengraph-image.png"],
+    },
+  }
 }
 
-// The main component that renders the Markdown content
-export default async function JournalPage({ params }: JournalPageProps) {
-  const { slug } = await params;
-  const journal = await getJournalContent(slug);
-  if (!journal) {
-    notFound();
-  }
 
-  // Calculate reading time (rough estimate: 200 words per minute)
-  const wordCount = journal.content.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / 200);
+export default async function BlogPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  const blog = await getBlogData(params.slug)
 
   return (
-    <BlogLayout
-      title={journal.metadata.title}
-      description={journal.metadata.description}
-      image={journal.metadata.image}
-      date={journal.metadata.date}
-      readingTime={`${readingTime}`}
-    >
-      <ReactMarkdown>{journal.content}</ReactMarkdown>
-    </BlogLayout>
-  );
+    <div className="flex justify-center items-center min-h-screen py-10 px-4">
+      <div className="flex flex-col items-center max-w-screen-xl w-full">
+        <h1 className="text-3xl font-bold mb-4 text-center">{blog.title}</h1>
+
+        <Image
+          src={blog.coverImage || "/placeholder.svg"}
+          alt={blog.title}
+          width={800}
+          height={450}
+          className="w-full max-w-screen-xl h-auto object-contain rounded-lg mb-6"
+        />
+        <div dangerouslySetInnerHTML={{ __html: blog.content }} className="prose max-w-none" />
+      </div>
+    </div>
+  )
 }
+
