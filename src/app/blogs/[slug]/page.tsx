@@ -23,7 +23,7 @@ export async function generateMetadata(
   const blog = await getBlogData(slug)
 
   return {
-    title: `${blog.title} | YT2MindMap Blog`,
+    title: `${blog.title} | Y2Map Blog`,
     description: blog.excerpt,
     openGraph: {
       title: blog.title,

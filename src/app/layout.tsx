@@ -9,7 +9,7 @@ const interSans = Inter({
 
 
 export const metadata: Metadata = { 
-  metadataBase: new URL("https://yt2mindmap.com"),
+  metadataBase: new URL("https://www.y2map.com"),
   title: "YouTube to Mind Map | Transform Videos into Interactive Mind Maps",
   description: "Transform YouTube videos into interactive mind maps. Our AI-powered platform helps you learn smarter by converting video content into visual knowledge maps.",
   openGraph: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "YT2MindMap - Convert YouTube Videos to Mind Maps",
+    title: "Y2Map - Convert YouTube Videos to Mind Maps",
     description: "Transform YouTube videos into structured mind maps for better learning and retention",
     images: ["/opengraph-image.png"],
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     types: {
-      "application/rss+xml": "https://yt2mindmap.com/rss.xml"
+      "application/rss+xml": "https://y2map.com/rss.xml"
     }
   },
   applicationName: "YouTube to Mind Map",
@@ -60,24 +60,24 @@ export const metadata: Metadata = {
         type: "image/x-icon"
       },
       {
-        url: "/favicon-16x16.png",
+        url: "/favicon.ico",
         sizes: "16x16",
-        type: "image/png"
+        type: "image/x-icon"
       },
       {
-        url: "/favicon-32x32.png",
+        url: "/favicon.ico",
         sizes: "32x32",
-        type: "image/png"
+        type: "image/x-icon"
       },
       {
-        url: "/favicon-96x96.png",
+        url: "/favicon.ico",
         sizes: "96x96",
-        type: "image/png"
+        type: "image/x-icon"
       },
       {
-        url: "/android-chrome-192x192.png",
+        url: "/favicon.ico",
         sizes: "192x192",
-        type: "image/png"
+        type: "image/x-icon"
       }
     ],
     shortcut: [

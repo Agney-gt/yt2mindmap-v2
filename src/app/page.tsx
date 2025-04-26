@@ -489,7 +489,7 @@ export default function Home() {
                 Frequently Asked Questions
               </h2>
               <p className="max-w-[85%] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Everything you need to know about yt2mindmap.
+                Everything you need to know about y2map.
               </p>
             </div>
             <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 py-12">

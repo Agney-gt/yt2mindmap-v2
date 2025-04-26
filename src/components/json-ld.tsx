@@ -5,8 +5,8 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "YouTube to Mind Map",
-    "alternateName": "YT2MindMap",
-    "url": "https://yt2mindmap.com",
+    "alternateName": "Y2Map",
+    "url": "https://www.y2map.com",
     "description": "Transform YouTube videos into interactive mind maps. Our AI-powered platform helps you learn smarter by converting video content into visual knowledge maps.",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Web browser",
@@ -44,7 +44,7 @@ export default function JsonLd() {
     ],
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://yt2mindmap.com/search?q={search_term_string}",
+      "target": "https://y2map.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     },
     "publisher": {
@@ -52,11 +52,11 @@ export default function JsonLd() {
       "name": "YouTube to Mind Map",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yt2mindmap.com/android-chrome-192x192.png"
+        "url": "https://y2map.com/android-chrome-192x192.png"
       },
       "sameAs": [
-        "https://twitter.com/yt2mindmap",
-        "https://www.linkedin.com/company/yt2mindmap"
+        "https://twitter.com/y2map",
+        "https://www.linkedin.com/company/y2map"
       ]
     },
     "audience": {
