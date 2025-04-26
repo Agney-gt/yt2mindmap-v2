@@ -10,29 +10,16 @@ export default function Home() {
     <div className="flex min-h-screen items-center flex-col">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-b from-background to-muted">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 xl:grid-cols-[1fr_700px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+        <section className="flex flex-col justify-center items-center w-full py-12 bg-gradient-to-b from-background to-muted">
+         
+          <h1 className="text-3xl font-bold tracking-tighter">
                    Visualize only what matters!
                   </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                  <p className="mt-4 max-w-[600px] text-muted-foreground">
                     Instantly map core concepts and iterate for retention! Powered by GPT-4o
                   </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                
-                  <SignInButton text="Start Mapping" />
                   
-                
-                
-                </div>
-                
-              </div>
-              <div className="mx-auto flex items-center justify-center lg:justify-end">
-              <div className="relative w-full max-w-[800px] aspect-[1574/832] overflow-hidden rounded-lg border bg-background shadow-xl">
+                  <div className="mt-4 relative w-full max-w-[800px] aspect-[1574/832] overflow-hidden rounded-lg border bg-background shadow-xl">
                 <Image
                   src="/mindmap.jpg"
                   width={1574}
@@ -40,17 +27,11 @@ export default function Home() {
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
                   className="object-cover w-full h-full scale-[2]"
                   priority
-                />
-                 
-                  <div className="absolute bottom-1 left-4 right-4 rounded-lg bg-background/90 p-2 backdrop-blur">
-                    <p className="text-xs sm:text-sm font-medium">
-                    &quot;Thought long hours were key but 10 minutes of focused mapping supercharged my notes.&quot;
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                /></div>
+                <div className = "mt-4">
+                <SignInButton text="Start Mapping" /></div>
+                  
+          
         </section>
 
         {/* Problem Agitation */}
