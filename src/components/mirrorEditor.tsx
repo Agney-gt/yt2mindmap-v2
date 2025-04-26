@@ -36,7 +36,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
       editorRef.current?.destroy();
       editorRef.current = null;
     };
-  }, [htmlContent]); // 👈 include htmlContent in the dependency array
+  }, []); // once on load
 
   // 2️⃣ Update editor + iframe when htmlContents changes (e.g. from DB/API)
   useEffect(() => {
