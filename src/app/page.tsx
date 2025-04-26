@@ -15,7 +15,7 @@ export default function Home() {
           <h1 className="text-3xl font-bold tracking-tighter">
                    Visualize only what matters!
                   </h1>
-                  <p className="mt-4 max-w-[600px] text-muted-foreground">
+                  <p className="text-center mt-4 max-w-[500px] text-muted-foreground">
                     Instantly map core concepts and iterate for retention! Powered by GPT-4o
                   </p>
                   
