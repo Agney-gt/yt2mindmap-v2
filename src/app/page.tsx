@@ -27,7 +27,11 @@ export default function Home() {
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
                   className="object-cover w-full h-full scale-[2]"
                   priority
-                /></div>
+                /><div className="absolute bottom-1 left-4 right-4 rounded-lg bg-background/90 p-2 backdrop-blur">
+                <p className="text-xs sm:text-sm font-medium">
+                &quot;Thought long hours were key but 10 minutes of focused mapping supercharged my notes.&quot;
+                </p>
+              </div></div>
                 <div className = "mt-4">
                 <SignInButton text="Start Mapping" /></div>
                   
