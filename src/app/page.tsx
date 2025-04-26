@@ -21,14 +21,14 @@ export default function Home() {
                   
                   <div className="mt-4 relative w-full max-w-[800px] aspect-[1574/832] overflow-hidden rounded-lg border bg-background shadow-xl">
                 <Image
-                  src="/mindmap.jpg"
+                  src="/mindmap+.jpg"
                   width={1574}
                   height={832}
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
-                  className="object-cover w-full h-full scale-[2]"
+                  className="object-cover w-full h-full "
                   priority
                 /><div className="absolute bottom-1 left-4 right-4 rounded-lg bg-background/90 p-2 backdrop-blur">
-                <p className="text-xs sm:text-sm font-medium">
+                <p className="text-xs text-center sm:text-sm font-medium">
                 &quot;Thought long hours were key but 10 minutes of focused mapping supercharged my notes.&quot;
                 </p>
               </div></div>
