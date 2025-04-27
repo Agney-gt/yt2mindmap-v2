@@ -58,19 +58,20 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
   return (
     <div className="flex flex-col w-screen">
       <ModeSelector editorRef={editorRef} session={session} setTaskId={setTaskId} />
-      <div id="mindmap" className="w-[90vw] h-[700px] ml-[20px] flex flex-col md:flex-row gap-4">
-        <div
-          ref={editorContainerRef}
-          className="text-left editor-container w-full md:w-1/2 h-full border border-gray-300 rounded-md p-2 bg-gray-50 overflow-auto mt-4"
-        />
-        <iframe
+      <div id="mindmap" className="flex flex-col gap-4">
+      <iframe
           title="HTML Preview"
           id="mindmapView"
           ref={iframeRef}
-          className="w-full md:w-3/4 h-full border border-gray-300 mb-4 mt-4"
+          className="w-full h-full border border-gray-300 mb-4 mt-4"
           srcDoc={htmlContent} // Binding srcDoc with htmlContent for live preview
           allowFullScreen
         />
+        <div
+          ref={editorContainerRef}
+          className="text-left editor-container w-full h-full border border-gray-300 rounded-md p-2 bg-gray-50 overflow-auto mt-4"
+        />
+        
       </div>
       <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} />
     </div>
