@@ -63,7 +63,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
           title="HTML Preview"
           id="mindmapView"
           ref={iframeRef}
-          className="w-full h-full border border-gray-300 mb-4 mt-4"
+          className="w-full h-[275px] md:h-full border border-gray-300 mb-4 mt-4"
           srcDoc={htmlContent} // Binding srcDoc with htmlContent for live preview
           allowFullScreen
         />
