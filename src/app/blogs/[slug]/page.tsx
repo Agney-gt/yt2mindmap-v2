@@ -1,25 +1,17 @@
 import { getBlogData, getAllBlogIds } from "@/lib/blogs"
 import Image from "next/image"
-
-
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 // Generate static params for all blog posts
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const blogIds = await getAllBlogIds()
   return blogIds.map((id) => ({ slug: id }))
 }
 
-
-
-
 export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>
-  }
+  props: { params: Promise<{ slug: string }> }
 ) {
-  // Resolve the params promise
   const { slug } = await props.params
-  
-  // Fetch the blog data using the slug
   const blog = await getBlogData(slug)
 
   return {
@@ -39,8 +31,6 @@ export async function generateMetadata(
     },
   }
 }
-
-
 
 export default async function BlogPage({
   params,
@@ -62,9 +52,29 @@ export default async function BlogPage({
           height={450}
           className="w-full max-w-screen-xl h-auto object-contain rounded-lg mb-6"
         />
-        <div dangerouslySetInnerHTML={{ __html: blog.content }} className="prose max-w-none" />
+
+        {/* Render Markdown content */}
+       
+        <article className="prose prose-lg w-full max-w-none">
+        <ReactMarkdown
+  remarkPlugins={[remarkGfm]}
+  components={{
+    h1: (props) => <h1 className="text-4xl font-bold my-4" {...props} />,
+    h2: (props) => <h2 className="text-3xl font-semibold my-3" {...props} />,
+    h3: (props) => <h3 className="text-2xl font-semibold my-2" {...props} />,
+    p: (props) => <p className="text-base leading-7 my-2" {...props} />,
+    li: (props) => <li className="list-disc ml-6" {...props} />,
+    table: (props) => <table className="table-auto border-collapse border border-gray-300 my-4" {...props} />,
+    th: (props) => <th className="border border-gray-300 px-4 py-2 font-semibold bg-gray-100" {...props} />,
+    td: (props) => <td className="border border-gray-300 px-4 py-2" {...props} />,
+  }}
+>
+  {blog.content}
+</ReactMarkdown>
+
+        </article>
+        
       </div>
     </div>
   )
 }
-

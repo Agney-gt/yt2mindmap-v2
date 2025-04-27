@@ -1,8 +1,6 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
-import { remark } from "remark"
-import html from "remark-html"
 
 const blogsDirectory = path.join(process.cwd(), "src/content/blogs")
 
@@ -58,7 +56,6 @@ export async function getAllBlogs(): Promise<Blog[]> {
     }
   })
 }
-
 // Get a single blog by ID
 export async function getBlogData(id: string): Promise<Blog> {
   const fullPath = path.join(blogsDirectory, `${id}.md`)
@@ -67,17 +64,16 @@ export async function getBlogData(id: string): Promise<Blog> {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents)
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark().use(html).process(matterResult.content)
-  const contentHtml = processedContent.toString()
+  // Do NOT convert content into HTML here
+  const contentMarkdown = matterResult.content
 
-  // Combine the data with the id and contentHtml
+  // Combine the data with the id and contentMarkdown
   return {
     id,
     title: matterResult.data.title || "",
     date: matterResult.data.date || "",
     excerpt: matterResult.data.excerpt || "",
     coverImage: matterResult.data.image || "",
-    content: contentHtml,
+    content: contentMarkdown, // ← Keep as Markdown
   }
 }
