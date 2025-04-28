@@ -59,10 +59,10 @@ export default async function BlogPage({
         <ReactMarkdown
   remarkPlugins={[remarkGfm]}
   components={{
-    h1: (props) => <h1 className="text-4xl font-bold my-4" {...props} />,
-    h2: (props) => <h2 className="text-3xl font-semibold my-3" {...props} />,
-    h3: (props) => <h3 className="text-2xl font-semibold my-2" {...props} />,
-    p: (props) => <p className="text-base leading-7 my-2" {...props} />,
+    h1: (props) => <h1 className="text-4xl font-bold my-16" {...props} />,
+    h2: (props) => <h2 className="text-3xl font-semibold my-12" {...props} />,
+    h3: (props) => <h3 className="text-2xl font-semibold my-8" {...props} />,
+    p: (props) => <p className="text-base leading-7 my-4" {...props} />,
     li: (props) => <li className="list-disc ml-6" {...props} />,
     table: (props) => <table className="table-auto border-collapse border border-gray-300 my-4" {...props} />,
     th: (props) => <th className="border border-gray-300 px-4 py-2 font-semibold bg-gray-100" {...props} />,
