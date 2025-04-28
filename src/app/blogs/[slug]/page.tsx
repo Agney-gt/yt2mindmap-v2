@@ -2,6 +2,13 @@ import { getBlogData, getAllBlogIds } from "@/lib/blogs"
 import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import remarkSlug from 'remark-slug';
+import remarkAutolinkHeadings from 'remark-autolink-headings';
+interface Heading {
+  id: string;
+  text: string;
+  level: number;
+}
 // Generate static params for all blog posts
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const blogIds = await getAllBlogIds()
@@ -39,25 +46,54 @@ export default async function BlogPage({
 }) {
   const { slug } = await params
   const blog = await getBlogData(slug)
-
+  function extractHeadings(markdown: string): Heading[] {
+    const lines = markdown.split('\n');
+    const headingLines = lines.filter(line => /^#{1,2}\s/.test(line));
+    return headingLines.map(line => {
+      const match = line.match(/^(#{1,6})\s+(.*)/);
+      if (match) {
+        const level = match[1].length;
+        const text = match[2];
+        const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+        return { id, text, level };
+      }
+      return { id: '', text: '', level: 0 };
+    });
+  }
+  const headings = extractHeadings(blog.content);
   return (
     <div className="flex justify-center items-center min-h-screen py-10 px-4">
-      <div className="flex flex-col items-center max-w-screen-xl w-full">
+      <div className="flex flex-col max-w-screen-xl w-2/3">
         <h1 className="text-3xl font-bold mb-4 text-center">{blog.title}</h1>
-
+        <div className="mt-4 flex gap-8 items-start">
+        <nav className="w-1/3 p-4 bg-gray-100 rounded-lg shadow-md">
+        <h2 className="font-bold mb-2 mt-2">Table of Contents</h2>
+        <ul className="space-y-2">
+          {headings.map((heading, idx) => (
+            <li key={idx} className={`ml-${(heading.level - 1) * 4}`}>
+              <a href={`#${heading.id}`} className="text-blue-600 hover:underline">
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div className="flex-1">
         <Image
           src={blog.coverImage || "/placeholder.svg"}
           alt={blog.title}
           width={800}
           height={450}
-          className="w-full max-w-screen-xl h-auto object-contain rounded-lg mb-6"
+          className="w-full max-w-screen-xl h-full object-cover rounded-lg mb-6"
         />
-
+        </div>
+        </div>
         {/* Render Markdown content */}
        
         <article className="prose prose-lg w-full max-w-none">
         <ReactMarkdown
-  remarkPlugins={[remarkGfm]}
+  // @ts-expect-error vfile deps for remark-slug and remark-autolink-headings+
+  remarkPlugins={[remarkGfm, remarkSlug, remarkAutolinkHeadings]}
   components={{
     h1: (props) => <h1 className="text-4xl font-bold my-16" {...props} />,
     h2: (props) => <h2 className="text-3xl font-semibold my-12" {...props} />,
