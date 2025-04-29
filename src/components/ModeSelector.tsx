@@ -24,14 +24,30 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [vId, setVId] = useState<string>("5nTuScU70As");
   const router = useRouter();
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    getVideoId(newValue);
+  };
+  const getVideoId = (inputValue: string) => {
+    if (inputValue.includes("www.youtube.com/")) {
+      setVId(inputValue.split('=')[1])
+    }
+    else if (inputValue.includes("youtu.be")) {
+      setVId(inputValue.replace("https://","").split('/')[1]?.split('?')[0])
+    }
+  }
+  //inputValue.includes("https://www.youtube.com/") ?: null
+  
   const YouTubeEmbedMemo = useMemo(() => {
-    return inputValue.includes("https://www.youtube.com/") ? (
+    return  (
       <div className="w-full max-w-3xl aspect-video mt-12 rounded-xl overflow-hidden">
-        <YouTubeEmbed videoid={inputValue.split("=")[1]} height={16} />
+        <YouTubeEmbed videoid={vId} height={16} />
       </div>
-    ) : null;
-  }, [inputValue]);
+    ) ;
+  }, [vId]);
   const fetchHtmlContent = async (taskId: string) => {
     //setLoading(true);
     try {
@@ -57,18 +73,13 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     try {
       // Extract video ID from URL
       if(mode == "youtube"){
-        const videoId = inputValue.split('v=')[1]?.split('&')[0];
-      if (!videoId) {
-        setError('Invalid YouTube URL');
-        setLoading(false);
-        return;
-      }
+        
 
       // Check for subtitles first
       const subtitleCheckResponse = await fetch('/api/check-subtitles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ videoId }),
+        body: JSON.stringify({ vId }),
       });
 
       const subtitleData = await subtitleCheckResponse.json();
@@ -90,7 +101,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       const response = await fetch('/api/yt-transcript-webhook-old', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: inputValue, taskId, dbLength }),
+        body: JSON.stringify({ url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }),
       });
   
       if (response.ok) {
@@ -218,9 +229,9 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
                   <div className="flex flex-col items-center justify-center">
                     <Input
                       id="input"
-                      placeholder="https://www.youtube.com/watch?v=5nTuScU70As"
+                      placeholder={`https://www.youtube.com/watch?${vId}`}
                       value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
+                      onChange={handleInputChange}
                       className="mt-2 pl-2 pr-2 w-1/3 mb-6 resize border overflow-auto"
                     />
                   </div>

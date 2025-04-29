@@ -97,8 +97,9 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     await redis.set(`task:${taskId}`, JSON.stringify(taskData));
     await redis.incr('taskCount');
+    
     const dbLength = await redis.get('taskCount');
-
+    
     return NextResponse.json({
       success: true,
       message: "Task enqueued successfully",
