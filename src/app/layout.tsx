@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Y2Map - Convert YouTube Videos to Mind Maps",
     description: "Transform YouTube videos into structured mind maps for better learning and retention",
-    images: ["/opengraph-image.png"],
+    images: ["https://www.y2map.com/opengraph-image.png"],
   },
   robots: {
     index: true,
