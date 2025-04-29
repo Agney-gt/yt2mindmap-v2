@@ -73,13 +73,12 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     try {
       // Extract video ID from URL
       if(mode == "youtube"){
-        
-
+        const videoId = vId
       // Check for subtitles first
       const subtitleCheckResponse = await fetch('/api/check-subtitles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vId }),
+        body: JSON.stringify({ videoId }),
       });
 
       const subtitleData = await subtitleCheckResponse.json();
