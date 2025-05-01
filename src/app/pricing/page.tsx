@@ -2,36 +2,17 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle } from "lucide-react"
-import { Checkbox } from "@/components/ui/checkbox"
 import { useState } from "react"
-import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { FeedbackButton } from "@/components/FeedbackButton"
 export default function PricingPage() {
-  const [tosAccepted, setTosAccepted] = useState(false);
+
   const [feedback, setFeedback] = useState('');
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
     setFeedback(newValue);
   };
-  const handleTosCheck = async (checked: boolean) => {
-    setTosAccepted(checked);
-    if (checked) {
-      try {
-        const response = await fetch('/api/tos-check', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        if (!response.ok) {
-          console.error('Failed to update TOS status');
-        }
-      } catch (error) {
-        console.error('Error updating TOS status:', error);
-      }
-    }
-  };
+  
 
   return (
            <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
@@ -50,7 +31,7 @@ export default function PricingPage() {
               <Card className="border bg-background">
                 <CardHeader>
                   <CardTitle>Free</CardTitle>
-                  <CardDescription>For Doomscrollers</CardDescription>
+                  <CardDescription>For Curious Explorers</CardDescription>
                   <div className="mt-4 text-4xl font-bold">$0</div>
                 </CardHeader>
                 <CardContent>
@@ -65,10 +46,10 @@ export default function PricingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>No recurring fees.</span>
+                      <span>No subscriptions, ever.</span>
                     </li>
                   </ul>
-                  <Button className="mt-6 w-full">Get Started</Button>
+                  
                 </CardContent>
               </Card>
               <Card className="border bg-background relative">
@@ -90,7 +71,7 @@ export default function PricingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Boosts productivity.</span>
+                      <span> Boost focus & retention</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
@@ -102,11 +83,7 @@ export default function PricingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Discord Community for Builders</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Anchor your learning</span>
+                      <span>Exclusive Builder Community</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
@@ -117,28 +94,11 @@ export default function PricingPage() {
                       <span>Access insights anytime</span>
                     </li>
                   </ul>
-                  <div className="flex items-start space-x-2 mt-4">
-                    <Checkbox
-                      id="refund-policy"
-                      checked={tosAccepted}
-                      onCheckedChange={handleTosCheck}
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <Label
-                        htmlFor="refund-policy"
-                        className="text-sm text-muted-foreground"
-                      >
-                        By checking this box, you acknowledge and agree to our Refund Policy: Due to the digital nature of our products, all sales are final. Refunds will only be granted in the case of duplicate payments or technical issues that prevent access, and only within 7 days of purchase.
-                      </Label>
-                    </div>
-                  </div>
-                  <Button
-                    className="mt-6 w-full"
-                    onClick={() => window.location.href = "https://payhip.com/order?link=KSaXZ"}
-                    disabled={!tosAccepted}
-                  >
-                    Start Pro
-                  </Button>
+                    <Button className="mt-6 w-full">
+                    <a href="https://payhip.com/order?link=KSaXZ" target="_blank" rel="noopener noreferrer">
+                      Start Pro
+                    </a>
+                    </Button>
                   <p className="mt-2 text-xs text-center text-muted-foreground">30-day money-back guarantee</p>
                 </CardContent>
                 
@@ -158,7 +118,7 @@ export default function PricingPage() {
                 <li>Watching AI costs drop feels like watching Jevons Paradox in action — just like the railroads, telecom and compute before it.</li>
                 <li>Here’s a little secret: building AI apps doesn’t have to break the bank. Want to know how?</li>
               </ul>
-                  <Button className="mt-6 w-full">Buy Now</Button>
+                  {/* <Button className="mt-6 w-full">Buy Now</Button> */}
                   <p className="mt-2 text-xs text-center text-muted-foreground">Its always the same old story</p>
                 </CardContent>
                 </Card>

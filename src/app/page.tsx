@@ -3,7 +3,7 @@ import { ArrowRight, Brain, CheckCircle, Clock, Compass, Lightbulb } from "lucid
 import SignInButton from "@/components/signInButton"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
+import { Button } from "@/components/ui/button"
 
 export default function Home() {
   return (
@@ -362,15 +362,13 @@ export default function Home() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Simple, Transparent Pricing
               </h2>
-              <p className="max-w-[85%] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Ownership over Subscriptions
-              </p>
+              
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
               <Card className="border bg-background">
                 <CardHeader>
                   <CardTitle>Free</CardTitle>
-                  <CardDescription>For Doomscrollers</CardDescription>
+                  <CardDescription>For Curious Explorers</CardDescription>
                   <div className="mt-4 text-4xl font-bold">$0</div>
                 </CardHeader>
                 <CardContent>
@@ -385,7 +383,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>No recurring fees.</span>
+                      <span>No subscriptions, ever.</span>
                     </li>
                   </ul>
                   <div className='mt-4' >
@@ -411,7 +409,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Boosts productivity.</span>
+                      <span> Boost focus & retention</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
@@ -423,11 +421,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Discord Community for Builders</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Anchor your learning</span>
+                      <span>Exclusive Builder Community</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
@@ -438,7 +432,11 @@ export default function Home() {
                       <span>Access insights anytime</span>
                     </li>
                   </ul>
-                  {/* <Button className="mt-6 w-full">Start Pro</Button> */}
+                    <Button className="mt-6 w-full">
+                    <a href="https://payhip.com/order?link=KSaXZ" target="_blank" rel="noopener noreferrer">
+                      Start Pro
+                    </a>
+                    </Button>
                   <p className="mt-2 text-xs text-center text-muted-foreground">30-day money-back guarantee</p>
                 </CardContent>
                 
@@ -452,11 +450,32 @@ export default function Home() {
                   </div>
                 </CardHeader>
               <CardContent>
+             
               <ul className="space-y-2 text-sm list-disc list-inside">
-                <li>Skeptical about budget-friendly AI? I was too, until this no-API-key-needed trick worked.</li>
-                <li>We build on the shoulders of VC backed giants. Keeping our services reliable, stable and scalable.</li>
-                <li>Watching AI costs drop feels like watching Jevons Paradox in action — just like the railroads, telecom and compute before it.</li>
-                <li>Here’s a little secret: building AI apps doesn’t have to break the bank. Want to know how?</li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Unlock the “No API Key” Method</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Build on VC subsisdized AI</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>The Jevons Paradox, Reimagined</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Abstraction vs Control</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Freemium Cloud Infrastructure </span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Exploits and Tricks </span>
+                </li>
               </ul>
                   {/* <Button className="mt-6 w-full">Buy Now</Button> */}
                   <p className="mt-2 text-xs text-center text-muted-foreground">Its always the same old story</p>
@@ -539,6 +558,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+      
 
       
     </div>
