@@ -51,7 +51,7 @@ export default function JsonLd() {
       "@type": "Organization",
       "name": "YouTube to Mind Map",
       "logo": {
-        "@type": "ImageObject",
+        "@type": "/favicon.ico",
         "url": "https://y2map.com/android-chrome-192x192.png"
       },
       "sameAs": [

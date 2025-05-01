@@ -1,6 +1,6 @@
 'use client';
 import { YouTubeEmbed } from '@next/third-parties/google';
-import {  useState } from 'react';
+import {  useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button'; // adjust this import based on your project structure
 import Turnstile from './Turnstile'; // adjust this import based on your project structure
 import { Input } from '@/components/ui/input'; // adjust this import based on your project structure
@@ -10,6 +10,7 @@ import { EditorView } from '@codemirror/view'; // Ensure this import matches you
 import PricingPortal from "@/components/PricingPortal";
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
+import { TaskadeSidebar } from "@/components/TaskadeSidebar";
 interface ModeSelectorProps {
   editorRef: React.RefObject<EditorView | null>;
   session: Session;
@@ -18,7 +19,7 @@ interface ModeSelectorProps {
 }
 const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [, setHtmlContent] = useState("");
-  const [mode, setMode] = useState<'youtube' | 'longtext'>('youtube');
+  const [mode, setMode] = useState<string>('youtube');
   const [isVerified, setIsVerified] = useState(false);
   const [showPricing, setShowPricing] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -26,11 +27,44 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [error, setError] = useState<string | null>(null);
   const [vId, setVId] = useState<string>("5nTuScU70As");
   const router = useRouter();
+  const checkSubtitlesYT = async () => {
+    if(mode == "youtube"){
+      const videoId = vId
+    // Check for subtitles first
+    const subtitleCheckResponse = await fetch('/api/check-subtitles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ videoId }),
+    });
+
+    const subtitleData = await subtitleCheckResponse.json();
+    if (!subtitleData.hasSubtitles) {
+      setError('This video does not have subtitles available');
+      setLoading(false);
+      return;
+    }
+
+    }}
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
     setInputValue(newValue);
     getVideoId(newValue);
   };
+  const handleVerification = useCallback(async () => {
+    try {
+      const response = await fetch("/api/chat-usage", { method: "GET" });
+      const data = await response.json();
+      if (data.usage_count > 3 && !data.isSubscribed && !data.isPaid) {
+        setShowPricing(true);
+      } else {
+        setIsVerified(true);
+      }
+    } catch (error) {
+      console.error("Error updating usage count:", error);
+      setIsVerified(true);
+    }
+  }, []);
+  
   const getVideoId = (inputValue: string) => {
     if (inputValue.includes("www.youtube.com/")) {
       setVId(inputValue.split('=')[1])
@@ -72,23 +106,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     setError(null);
     try {
       // Extract video ID from URL
-      if(mode == "youtube"){
-        const videoId = vId
-      // Check for subtitles first
-      const subtitleCheckResponse = await fetch('/api/check-subtitles', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ videoId }),
-      });
-
-      const subtitleData = await subtitleCheckResponse.json();
-      if (!subtitleData.hasSubtitles) {
-        setError('This video does not have subtitles available');
-        setLoading(false);
-        return;
-      }
-
-      }
+      checkSubtitlesYT();
       const taskId = Math.random().toString(36).substring(2);
       const RedisSetresponse = await fetch('/api/webhook', {
         method: 'POST',
@@ -173,6 +191,61 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     clearInterval(messageInterval);
   };
   
+  const ModeButtons = () => (
+    <>
+      <Button variant={mode === 'youtube' ? 'default' : 'outline'} onClick={() => setMode('youtube')} className='m-1'>YouTube</Button>
+      <Button variant={mode === 'longtext' ? 'default' : 'outline'} onClick={() => setMode('longtext')} className='m-1'>Long Text</Button>
+    </>
+  );
+
+  const VerificationBox = ({handleVerification}:{ handleVerification: () => Promise<void> }) => (
+    <div className="flex flex-col items-center">
+      <p className="mb-4 text-gray-600">Please complete the verification to continue</p>
+      {(
+        <Turnstile
+          onVerify={handleVerification}
+        />
+      )}
+    </div>
+  )
+  const VerifiedInputs = () => (
+    <>{ <TaskadeSidebar/> }
+          <div className="flex flex-col items-center justify-center">
+            <Input
+              id="input"
+              placeholder={`https://www.youtube.com/watch?${vId}`}
+              value={inputValue}
+              onChange={handleInputChange}
+              className="mt-2 pl-2 pr-2 w-1/3 mb-6 resize border overflow-auto"
+            />
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            {YouTubeEmbedMemo}
+              {/* <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} /> */}
+              
+            </div>
+      
+          <Button variant="default" onClick={handleSubmitWebhook} disabled={loading}>
+            {loading? <Loader2 className="animate-spin w-4 h-4" /> : 'Generate Mindmap'}
+          </Button>
+
+      
+        {error ? <p className="text-red-600">{error}</p> : null}
+      </>
+  )
+  const LoadingUI = () => (
+    <>
+    <div className="justify-center">
+        <p dangerouslySetInnerHTML={{ __html: loadingMessages[messageIndex] }} />
+        {CurrentStep && (
+          <div className="mt-2 text-center">
+            <p className="text-sm text-gray-600 capitalize">{CurrentStep}</p>
+            <div className="w-64 h-2 bg-gray-200 rounded-full mt-2">
+            </div>
+          </div>
+        )}
+      </div> </>
+  )
   return (
     
       <div className="flex flex-col justify-center gap-2 mb-6">
@@ -182,82 +255,17 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
         
         <div className="justify-center items-center">
           
-        <Button
-          variant={mode === 'youtube' ? 'default' : 'outline'}
-          onClick={() => setMode('youtube')}
-          className='m-1'
-        >
-          YouTube
-        </Button>
-        <Button
-          variant={mode === 'longtext' ? 'default' : 'outline'}
-          onClick={() => setMode('longtext')}
-          className='m-1'
-        >
-          Long Text
-        </Button>
+        <ModeButtons/>
         
         {!isVerified ? (
-          
-              <div className="flex flex-col items-center">
-                <p className="mb-4 text-gray-600">Please complete the verification to continue</p>
-                {(
-                  <Turnstile
-                    onVerify={async () => {
-                      try {
-                        const response = await fetch("/api/chat-usage", {
-                          method: "GET",
-                        });
-                        const data = await response.json();
-                        if (data.usage_count > 3 && !data.isSubscribed && !data.isPaid) {
-                          setShowPricing(true);
-                        } else {
-                          setIsVerified(true);
-                        }
-
-                      } catch (error) {
-                        console.error("Error updating usage count:", error);
-                        setIsVerified(true);
-                      }
-                    }}
-                  />
-                )}
-              </div>
-            ) : (
-              <>
-                  <div className="flex flex-col items-center justify-center">
-                    <Input
-                      id="input"
-                      placeholder={`https://www.youtube.com/watch?${vId}`}
-                      value={inputValue}
-                      onChange={handleInputChange}
-                      className="mt-2 pl-2 pr-2 w-1/3 mb-6 resize border overflow-auto"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                   {YouTubeEmbedMemo}
-                      {/* <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} /> */}
-                      
-                    </div>
+          // Show verification box if not verified
+          <VerificationBox handleVerification={handleVerification} />  
               
-                  <Button variant="default" onClick={handleSubmitWebhook} disabled={loading}>
-                    {loading? <Loader2 className="animate-spin w-4 h-4" /> : 'Generate Mindmap'}
-                  </Button>
-             
-                {error ? <p className="text-red-600">{error}</p> : null}
-              </>
+            ) : (
+              <VerifiedInputs/>
             )}
             {loading && (
-              <div className="justify-center">
-                <p dangerouslySetInnerHTML={{ __html: loadingMessages[messageIndex] }} />
-                {CurrentStep && (
-                  <div className="mt-2 text-center">
-                    <p className="text-sm text-gray-600 capitalize">{CurrentStep}</p>
-                    <div className="w-64 h-2 bg-gray-200 rounded-full mt-2">
-                    </div>
-                  </div>
-                )}
-              </div>
+              <LoadingUI />
             )}
             </div>
             
