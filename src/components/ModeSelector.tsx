@@ -198,7 +198,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     </>
   );
 
-  const VerificationBox = ({handleVerification}:{ handleVerification: () => Promise<void> }) => (
+  const VerificationBox = () => (
     <div className="flex flex-col items-center">
       <p className="mb-4 text-gray-600">Please complete the verification to continue</p>
       {(
@@ -259,7 +259,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
         
         {!isVerified ? (
           // Show verification box if not verified
-          <VerificationBox handleVerification={handleVerification} />  
+          <VerificationBox />  
               
             ) : (
               <VerifiedInputs/>
