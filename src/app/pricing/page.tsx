@@ -5,9 +5,15 @@ import { CheckCircle } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useState } from "react"
 import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+import { FeedbackButton } from "@/components/FeedbackButton"
 export default function PricingPage() {
   const [tosAccepted, setTosAccepted] = useState(false);
-
+  const [feedback, setFeedback] = useState('');
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = e.target.value;
+    setFeedback(newValue);
+  };
   const handleTosCheck = async (checked: boolean) => {
     setTosAccepted(checked);
     if (checked) {
@@ -35,8 +41,10 @@ export default function PricingPage() {
                 Simple, Transparent Pricing
               </h2>
               <p className="max-w-[85%] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Ownership over Subscriptions
+                Good Feedback is much appreciated, and will be rewarded with a free 18 month subscription.
               </p>
+              <Input placeholder="Feedback" value={feedback} onChange ={handleInputChange}/>
+              <FeedbackButton feedback={feedback} />
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
               <Card className="border bg-background">

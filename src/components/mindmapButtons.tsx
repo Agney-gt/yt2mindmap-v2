@@ -67,13 +67,14 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
             </Button>
             <Button variant="default" onClick={enterFullscreen}>Go Fullscreen</Button>
             <Button variant="default" onClick={() => {
+              console.log("clicked")
            
               if (editorRef.current) {
-                const currentContent = editorRef.current.state.doc.toString();
-                const match = currentContent.match(/<div class="mermaid">([\s\S]*?)<\/div>/);
+                const currentContent = editorRef.current.state.doc.toString().replace(/\\"/g, '');
+                const match = currentContent.match(/<div class="mermaid">([\s\S]*?)<\/div>/) || currentContent.match(/<div class='mermaid'>([\s\S]*?)<\/div>/)
                 const extracted = match? match[1] : "";
                 const cleaned = extracted
-                  .replace(/\\n/g, '')
+                  .replace(/\\n/g, '').replace(/\\/g, '')
                   .replace(/(?<!\()\((?!\()/g, '')   // remove ( not part of ((
                   .replace(/(?<!\))\)(?!\))/g, '');  // remove ) not part of ))
 
