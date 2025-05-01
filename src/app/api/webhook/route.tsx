@@ -10,12 +10,14 @@ const ratelimit = new Ratelimit({
 interface WebhookData {
   event: string;
   taskId: string;
+  vId:string;
   data: Record<string, unknown>;
   email?: string;
 }
 
 interface TaskData {
   taskId: string;
+  vId: string;
   status: string;
   progress: number;
   email?: string;
@@ -74,6 +76,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
 
     const taskId = body.taskId.trim();
+    const vId = body.vId.trim();
+    console.log("taskId", taskId);
+    console.log("vId", vId);
     if (taskId.length < 8 || taskId.length > 32) {
       return NextResponse.json(
         {
@@ -85,7 +90,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
 
     const taskData: TaskData = {
-      taskId,
+      taskId, vId,
       status: "pending",
       progress: 0,
       email: body.email,

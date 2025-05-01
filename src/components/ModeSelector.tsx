@@ -111,7 +111,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       const RedisSetresponse = await fetch('/api/webhook', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ taskId, email: session?.user?.email }),
+        body: JSON.stringify({ taskId,vId, email: session?.user?.email }),
       });
       const { dbLength } = await RedisSetresponse.json();
  
