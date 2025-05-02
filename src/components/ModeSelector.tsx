@@ -193,22 +193,19 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     clearInterval(messageInterval);
   };
   
-  const ModeButtons = () => (
-    <>
-      <Button variant={mode === 'youtube' ? 'default' : 'outline'} onClick={() => setMode('youtube')} className='m-1'>YouTube</Button>
-      <Button variant={mode === 'longtext' ? 'default' : 'outline'} onClick={() => setMode('longtext')} className='m-1'>Long Text</Button>
-    </>
-  );
+  
 
   const VerificationBox = () => (
+    <>{console.log("verification box")}
     <div className="flex flex-col items-center">
+      
       <p className="mb-4 text-gray-600">Please complete the verification to continue</p>
       {(
         <Turnstile
           onVerify={handleVerification}
         />
       )}
-    </div>
+    </div></>
   )
   
   const LoadingUI = () => (
@@ -234,7 +231,8 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
         
         <div className="justify-center items-center">
           
-        <ModeButtons/>
+        <Button variant={mode === 'youtube' ? 'default' : 'outline'} onClick={() => setMode('youtube')} className='m-1'>YouTube</Button>
+      <Button variant={mode === 'longtext' ? 'default' : 'outline'} onClick={() => setMode('longtext')} className='m-1'>Long Text</Button>
         
         {!isVerified ? (
           // Show verification box if not verified
