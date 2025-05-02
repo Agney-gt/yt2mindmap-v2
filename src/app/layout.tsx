@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google"
 import "./globals.css";
+import Script from "next/script"
 import JsonLd from "@/components/json-ld";
 const interSans = Inter({
   variable: "--font-inter",
@@ -144,7 +145,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+      <Script
+          crossOrigin="anonymous"
+          src="//unpkg.com/react-scan/dist/auto.global.js"
+          strategy="lazyOnload"
+        />
         <JsonLd />
+
       </head>
       <body
         className={`${interSans.variable} antialiased`}

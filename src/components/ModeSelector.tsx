@@ -61,7 +61,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       }
     } catch (error) {
       console.error("Error updating usage count:", error);
-      setIsVerified(true);
+      setIsVerified(false);
     }
   }, []);
   
@@ -210,7 +210,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   
   const LoadingUI = () => (
     <>
-    { console.log("1243") }
+    
     <div className="justify-center">
         <p dangerouslySetInnerHTML={{ __html: loadingMessages[messageIndex] }} />
         {CurrentStep && (
