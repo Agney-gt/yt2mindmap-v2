@@ -1,3 +1,4 @@
+
 import Image from "next/image"
 import { ArrowRight, Brain, CheckCircle, Clock, Compass, Lightbulb } from "lucide-react"
 import SignInButton from "@/components/signInButton"
@@ -432,11 +433,11 @@ export default function Home() {
                       <span>Access insights anytime</span>
                     </li>
                   </ul>
-                    <Button className="mt-6 w-full">
+                    
                     <a href="https://payhip.com/order?link=KSaXZ" target="_blank" rel="noopener noreferrer">
-                      Start Pro
+                      <Button className="mt-6 w-full"> Buy Now! </Button>
                     </a>
-                    </Button>
+                    
                   <p className="mt-2 text-xs text-center text-muted-foreground">30-day money-back guarantee</p>
                 </CardContent>
                 
