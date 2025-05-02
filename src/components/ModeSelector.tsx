@@ -46,9 +46,9 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
 
     }}
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    getVideoId(newValue);
+    
+    setInputValue(e.target.value);
+    getVideoId(e.target.value);
   };
   const handleVerification = useCallback(async () => {
     try {
@@ -66,6 +66,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   }, []);
   
   const getVideoId = (inputValue: string) => {
+    console.log("getting vID")
     if (inputValue.includes("www.youtube.com/")) {
       setVId(inputValue.split('=')[1])
     }
@@ -73,7 +74,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       setVId(inputValue.replace("https://","").split('/')[1]?.split('?')[0])
     }
   }
-  //inputValue.includes("https://www.youtube.com/") ?: null
+  
   
   const YouTubeEmbedMemo = useMemo(() => {
     return  (
@@ -85,6 +86,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const fetchHtmlContent = async (taskId: string) => {
     //setLoading(true);
     try {
+      
       const userEmail = session?.user?.email || 'anonymous';
       const response = await fetch(`https://yt2mapapi.blob.core.windows.net/html/user-${userEmail.split('@')[0]}/${taskId}.html`, { cache: 'no-store' });
       const text = await response.text();
@@ -208,33 +210,10 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       )}
     </div>
   )
-  const VerifiedInputs = () => (
-    <>{ <TaskadeSidebar/> }
-          <div className="flex flex-col items-center justify-center">
-            <Input
-              id="input"
-              placeholder={`https://www.youtube.com/watch?${vId}`}
-              value={inputValue}
-              onChange={handleInputChange}
-              className="mt-2 pl-2 pr-2 w-1/3 mb-6 resize border overflow-auto"
-            />
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            {YouTubeEmbedMemo}
-              {/* <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} /> */}
-              
-            </div>
-      
-          <Button variant="default" onClick={handleSubmitWebhook} disabled={loading}>
-            {loading? <Loader2 className="animate-spin w-4 h-4" /> : 'Generate Mindmap'}
-          </Button>
-
-      
-        {error ? <p className="text-red-600">{error}</p> : null}
-      </>
-  )
+  
   const LoadingUI = () => (
     <>
+    { console.log("1243") }
     <div className="justify-center">
         <p dangerouslySetInnerHTML={{ __html: loadingMessages[messageIndex] }} />
         {CurrentStep && (
@@ -262,7 +241,29 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
           <VerificationBox />  
               
             ) : (
-              <VerifiedInputs/>
+              <> {<TaskadeSidebar/> }
+          <div className="flex flex-col items-center justify-center">
+            <Input
+              id="input"
+              placeholder={`https://www.youtube.com/watch?${vId}`}
+              value={inputValue}
+              onChange={handleInputChange}
+              className="mt-2 pl-2 pr-2 w-1/3 mb-6 resize border overflow-auto"
+            />
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            {YouTubeEmbedMemo}
+              {/* <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} /> */}
+              
+            </div>
+      
+          <Button className = 'mt-4' variant="default" onClick={handleSubmitWebhook} disabled={loading}>
+            {loading? <Loader2 className="animate-spin w-4 h-4" /> : 'Generate Mindmap'}
+          </Button>
+
+      
+        {error ? <p className="text-red-600">{error}</p> : null}
+      </>
             )}
             {loading && (
               <LoadingUI />
