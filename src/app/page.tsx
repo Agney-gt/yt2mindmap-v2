@@ -1,6 +1,6 @@
 
 import Image from "next/image"
-import { ArrowRight, Brain, CheckCircle, Clock, Compass, Lightbulb } from "lucide-react"
+import { BrainCog,Filter,MicOff,BedDouble,PenTool, CheckCircle, Headphones, FastForward, VolumeX, SearchSlash, MoonStar, BookX, Lightbulb } from "lucide-react"
 import SignInButton from "@/components/signInButton"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -54,18 +54,30 @@ export default function Home() {
               <div className="flex flex-col gap-2 rounded-lg border bg-background p-6">
                 <h3 className="text-xl font-bold">Watching videos passively:</h3>
                 <ul className="mt-2 space-y-4">
-                  <li className="flex gap-2">
-                    <Clock className="h-5 w-5 text-red-500 shrink-0" />
-                    <span>Sit through hours of content, hoping to remember key points</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <Compass className="h-5 w-5 text-red-500 shrink-0" />
-                    <span>Struggle to find that one crucial idea buried in a long discussion</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <Brain className="h-5 w-5 text-red-500 shrink-0" />
-                    <span>Absorb information linearly without clear connections even after multiple re-watches</span>
-                  </li>
+                <li className="flex gap-2">
+                  <Headphones className="h-5 w-5 text-red-500 shrink-0" />
+                  <span>Half-listening nukes your focus and creativity.</span>
+                </li>
+                <li className="flex gap-2">
+                  <FastForward className="h-5 w-5 text-red-500 shrink-0" />
+                  <span>Brain learns to skim and toss since everything is either fake or junk</span>
+                </li>
+                <li className="flex gap-2">
+                  <VolumeX className="h-5 w-5 text-red-500 shrink-0" />
+                  <span>Can’t sit in silence anymore? Must be the recycled hot-takes noisily playing in the background!</span>
+                </li><li className="flex gap-2">
+                  <SearchSlash className="h-5 w-5 text-red-500 shrink-0" />
+                  <span>You’re not curious—you’re just bored and afraid of quiet.</span>
+                </li>
+                <li className="flex gap-2">
+                  <MoonStar className="h-5 w-5 text-red-500 shrink-0" />
+                  <span>Sleep? Not when your brain’s binge-watching war crimes or emotional dramas at 1 AM.</span>
+                </li>
+                <li className="flex gap-2">
+                  <BookX className="h-5 w-5 text-red-500 shrink-0" />
+                  <span>Feels like you are learning something but actually ends in burnout... </span>
+                </li>
+
                 </ul>
                 <div className="mt-4 text-sm text-muted-foreground">
                   <p className="italic">
@@ -76,26 +88,34 @@ export default function Home() {
               <div className="flex flex-col gap-2 rounded-lg border bg-background p-6">
                 <h3 className="text-xl font-bold">Converting videos into mind maps:</h3>
                 <ul className="mt-2 space-y-4">
-                  <li className="flex gap-2">
-                    <Lightbulb className="h-5 w-5 text-green-500 shrink-0" />
-                    <span>Extract key insights instantly for quicker review</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <Brain className="h-5 w-5 text-green-500 shrink-0" />
-                    <span>Visualize connections between concepts for deeper understanding</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-500 shrink-0" />
-                    <span>Reinforce learning through structured reflection</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <ArrowRight className="h-5 w-5 text-green-500 shrink-0" />
-                    <span>AI helps you get started, you make it better</span>
-                  </li>
+                <li className="flex gap-2">
+                  <BrainCog className="h-5 w-5 text-green-600 shrink-0" />
+                  <span>Mindmapping forces focused listening. No more passive scroll while your creativity rots.</span>
+                </li>
+                <li className="flex gap-2">
+                  <Filter className="h-5 w-5 text-green-600 shrink-0" />
+                  <span>AI filters the junk. You get the signal, not the noise. </span>
+                </li> 
+                <li className="flex gap-2">
+                  <MicOff className="h-5 w-5 text-green-600 shrink-0" />
+                  <span>Silence is golden. Mindmaps let you pause, think, and write instead of absorbing hot takes on autoplay.</span>
+                </li>
+                <li className="flex gap-2">
+                  <Lightbulb className="h-5 w-5 text-green-600 shrink-0" />
+                  <span>Bored? Good. Boredom births real ideas. Mindmapping rewires boredom into breakthroughs.</span>
+                </li>
+                <li className="flex gap-2">
+                  <BedDouble className="h-5 w-5 text-green-600 shrink-0" />
+                  <span>No dopamine dumps at midnight—just a clean, visual mindmap you can review tomorrow with a fresh brain.</span>
+                </li>
+                <li className="flex gap-2">
+                  <PenTool className="h-5 w-5 text-green-600 shrink-0" />
+                  <span>You’re not just watching—you’re building. Enhance the AI map with your ideas or do a deep research... </span>
+                </li>
                 </ul>
                 <div className="mt-4 text-sm text-muted-foreground">
                   <p className="italic">
-                    Use an AI assistant to skip the algorithm and research while the video plays, and get the most out of your time by taking notes.
+                    Use the assistant in the sidebar to search for videos, skip the algorithm and research while the video plays, and get the most out of your time by taking notes.
                   </p>
                 </div>
               </div>
