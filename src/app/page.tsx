@@ -14,10 +14,10 @@ export default function Home() {
         <section className="flex flex-col justify-center items-center w-full py-12 bg-gradient-to-b from-background to-muted">
          
           <h1 className="text-3xl font-bold tracking-tighter">
-                   Visualize only what matters!
+                   From Brainrot to Breakthroughs
                   </h1>
                   <p className="text-center mt-4 max-w-[500px] text-muted-foreground">
-                    Instantly map core concepts and iterate for retention! Powered by GPT-4o
+                  Skip the burnout cycle of endless autoplay—engage your brain with structured mindmapping. Powered by GPT-4o
                   </p>
                   
                   <div className="mt-4 relative w-full max-w-[800px] aspect-[1574/832] overflow-hidden rounded-lg border bg-background shadow-xl">
