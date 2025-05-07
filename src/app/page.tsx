@@ -90,7 +90,7 @@ export default function Home() {
                 <ul className="mt-2 space-y-4">
                 <li className="flex gap-2">
                   <BrainCog className="h-5 w-5 text-green-600 shrink-0" />
-                  <span>Mindmapping forces focused listening. No more passive scroll while your creativity rots.</span>
+                  <span>Mindmapping forces focused listening. No more doomscrolling your creativity away.</span>
                 </li>
                 <li className="flex gap-2">
                   <Filter className="h-5 w-5 text-green-600 shrink-0" />
@@ -98,11 +98,11 @@ export default function Home() {
                 </li> 
                 <li className="flex gap-2">
                   <MicOff className="h-5 w-5 text-green-600 shrink-0" />
-                  <span>Silence is golden. Mindmaps let you pause, think, and write instead of absorbing hot takes on autoplay.</span>
+                  <span>Silence is golden. Mindmaps let you pause, think, write and reflect.</span>
                 </li>
                 <li className="flex gap-2">
                   <Lightbulb className="h-5 w-5 text-green-600 shrink-0" />
-                  <span>Bored? Good. Boredom births real ideas. Mindmapping rewires boredom into breakthroughs.</span>
+                  <span>Mindmapping rewires boredom and mental atrophy into insight.</span>
                 </li>
                 <li className="flex gap-2">
                   <BedDouble className="h-5 w-5 text-green-600 shrink-0" />
@@ -110,7 +110,7 @@ export default function Home() {
                 </li>
                 <li className="flex gap-2">
                   <PenTool className="h-5 w-5 text-green-600 shrink-0" />
-                  <span>You’re not just watching—you’re building. Enhance the AI map with your ideas or do a deep research... </span>
+                  <span>You’re not just watching, you’re building and iterating. </span>
                 </li>
                 </ul>
                 <div className="mt-4 text-sm text-muted-foreground">
@@ -185,7 +185,7 @@ export default function Home() {
                 Everything you need to transform passive watching into active learning and balance consumption with creation.
               </p>
             </div>
-            <Tabs defaultValue="extract" className="mx-auto max-w-5xl py-12">
+            {/* <Tabs defaultValue="extract" className="mx-auto max-w-5xl py-12">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="extract">Extract</TabsTrigger>
                 <TabsTrigger value="organize">Organize</TabsTrigger>
@@ -333,7 +333,7 @@ export default function Home() {
                   </div>
                 </div>
               </TabsContent>
-            </Tabs>
+            </Tabs> */}
           </div>
         </section>
 
