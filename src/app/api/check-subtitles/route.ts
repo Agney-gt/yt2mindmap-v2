@@ -14,20 +14,32 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'YouTube API key is not configured' }, { status: 500 });
     }
 
-    const response = await fetch(
+    const response1 = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`
+    );
+
+    if (!response1.ok) {
+      return NextResponse.json({ error: 'Failed to fetch captions data' }, { status: response1.status });
+    }
+
+    const langdata = await response1.json();
+    const result1 = langdata.items[0].snippet.defaultAudioLanguage === 'en' ? langdata.items[0].snippet.defaultAudioLanguage : false;
+    const response2 = await fetch(
       `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${YOUTUBE_API_KEY}`
     );
 
-    if (!response.ok) {
-      return NextResponse.json({ error: 'Failed to fetch captions data' }, { status: response.status });
+    if (!response2.ok) {
+      return NextResponse.json({ error: 'Failed to fetch captions data' }, { status: response2.status });
     }
 
-    const data = await response.json();
-    const hasSubtitles = data.items && data.items.length > 0;
-
+    const captiondata = await response2.json();
+    let result2 = false;
+    if (captiondata.items && captiondata.items.length > 0) {
+      result2 = true;
+    }
+    const result = result1 && result2;
     return NextResponse.json({
-      hasSubtitles,
-      captionsData: hasSubtitles ? data.items : null
+      result
     });
 
   } catch (error) {

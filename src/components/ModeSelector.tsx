@@ -26,8 +26,10 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [vId, setVId] = useState<string>("5nTuScU70As");
+  
   //const router = useRouter();
   const checkSubtitlesYT = async () => {
+    
     if(mode == "youtube"){
       const videoId = vId
     // Check for subtitles first
@@ -38,11 +40,9 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     });
 
     const subtitleData = await subtitleCheckResponse.json();
-    if (!subtitleData.hasSubtitles) {
-      setError('This video does not have subtitles available');
-      setLoading(false);
-      return;
-    }
+    
+    return subtitleData.result
+   
 
     }}
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -106,41 +106,47 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const handleSubmitWebhook = async () => {
     setLoading(true);
     setError(null);
-    try {
-      // Extract video ID from URL
-      checkSubtitlesYT();
-      const taskId = Math.random().toString(36).substring(2);
-      const RedisSetresponse = await fetch('/api/webhook', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ taskId,vId, email: session?.user?.email }),
-      });
-      const { dbLength } = await RedisSetresponse.json();
- 
-      const response = await fetch('/api/yt-transcript-webhook-old', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }),
-      });
-  
-      if (response.ok) {
-        // Increment chat usage count
-        await fetch('/api/chat-usage', {
+    const flag = await checkSubtitlesYT();
+    if (flag === true){
+      console.log("here")
+      try {
+        // Extract video ID from URL
+        
+        const taskId = Math.random().toString(36).substring(2);
+        const RedisSetresponse = await fetch('/api/webhook', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ taskId,vId, email: session?.user?.email }),
         });
-      
-        await checkTaskStatus(taskId);
-      } else {
-        console.error("Failed to submit webhook:", await response.text());
-        setError('Failed to process video');
+        const { dbLength } = await RedisSetresponse.json();
+  
+        const response = await fetch('/api/yt-transcript-webhook-old', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }),
+        });
+    
+        if (response.ok) {
+          // Increment chat usage count
+          await fetch('/api/chat-usage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          });
+        
+          await checkTaskStatus(taskId);
+        } else {
+          console.error("Failed to submit webhook:", await response.text());
+          setError('Failed to process video');
+        }
+      } catch (error) {
+        console.error("Error submitting webhook:", error);
+        setError('An error occurred while processing the video');
+      } finally {
+        setLoading(false);
+      }}
+    else { setLoading(false); 
+      setError('This video is not in English. Please try another video.'); 
       }
-    } catch (error) {
-      console.error("Error submitting webhook:", error);
-      setError('An error occurred while processing the video');
-    } finally {
-      setLoading(false);
-    }
   };
   const [CurrentStep, setCurrentSteps] = useState('');
   const loadingMessages = [
@@ -154,7 +160,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   ];
   const [messageIndex, setMessageIndex] = useState(0);
   
-  const checkTaskStatus = async (taskId: string, maxRetries = 200, interval = 5000) => {
+  const checkTaskStatus = async (taskId: string, maxRetries = 100 , interval = 5000) => {
     let attempts = 0;
     const messageInterval = setInterval(() => {
       setMessageIndex(prev => {
@@ -163,7 +169,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
         }
         return prev + 1; // Otherwise, increment the index
       });
-    }, 15000);
+    }, 20000);
 
     while (attempts < maxRetries) {
       try {
@@ -175,7 +181,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
           clearInterval(messageInterval);
           setLoading(false);
           setError(null);
-         
+          attempts = 0;
           await new Promise(resolve => setTimeout(resolve, 2000));
           fetchHtmlContent(taskId);
           setTaskId(taskId);
@@ -187,10 +193,12 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       } catch (error) {
         console.error("Error checking task status:", error);
         clearInterval(messageInterval);
+        attempts = 0;
       }
     }
     console.error("Task polling timed out.");
     clearInterval(messageInterval);
+    attempts = 0;
   };
   
   
