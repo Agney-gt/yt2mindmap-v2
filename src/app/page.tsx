@@ -124,6 +124,7 @@ export default function Home() {
 
         {/* Transformation */}
         <section className="w-full py-12 md:py-24 lg:py-32">
+        
           <div className="container px-4 md:px-6">
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
@@ -131,6 +132,7 @@ export default function Home() {
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                     The Pareto Principle of Learning
                   </h2>
+                  
                   <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                     A typical crash course might include 64 hours of lectures, 1372 comments and discussions, and 2 hours of
                     actual insights...
@@ -153,6 +155,7 @@ export default function Home() {
                     <span>Turn videos into a tool for deeper understanding</span>
                   </li>
                 </ul>
+                
                 <div className="flex flex-col gap-2 min-[400px]:flex-row pt-4">
                 
                 <SignInButton text="Free Forever" />
@@ -160,15 +163,17 @@ export default function Home() {
                   
                 </div>
               </div>
+
               <div className="mx-auto flex items-center justify-center">
-                <div className="relative h-[350px] w-full max-w-[550px] overflow-hidden rounded-lg border bg-background shadow-xl">
-                  <Image
-                    src="/pie-chart-80-svgrepo-com.svg"
-                    width={1200}
-                    height={700}
-                    alt="How MindMapAI transforms YouTube videos into interactive mind maps"
-                    className="object-contain mt-12 ml-32"
-                  />
+                 <div className="ml-2 mt-4 relative w-full max-w-[900px] aspect-[1700/832] overflow-hidden rounded-lg border bg-background shadow-xl  ">
+                <Image
+                  src="/pareto.jpg"
+                  width={1700}
+                  height={832}
+                  alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
+                  className="object-cover w-full h-full scale-175 translate-x-1/3"
+                  priority
+                />
                 </div>
               </div>
             </div>
@@ -399,13 +404,11 @@ export default function Home() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Ready to Transform How You Learn?
               </h2>
-              <p className="max-w-[85%] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Join thousands of learners who are already getting more from their content.
-              </p>
+              
               <div className="flex flex-col gap-2 min-[400px]:flex-row pt-4">
               
                   
-                  <SignInButton text="Turn Your Youtube History into an Asset" />
+                  <SignInButton text="Utilize Watch History" />
          
                 
               </div>
