@@ -246,7 +246,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
               placeholder={`https://www.youtube.com/watch?${vId}`}
               value={inputValue}
               onChange={handleInputChange}
-              className="mt-2 pl-2 pr-2 w-1/3 mb-6 resize border overflow-auto"
+              className="mt-2 pl-2 pr-2 lg:w-1/3 mb-6 resize border overflow-auto w-2/3 h-20"
             />
           </div>
           <div className="flex flex-col items-center justify-center">
