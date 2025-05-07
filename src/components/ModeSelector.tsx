@@ -145,7 +145,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
         setLoading(false);
       }}
     else { setLoading(false); 
-      setError('This video is not in English. Please try another video.'); 
+      setError('This video is not in English or Captions not loaded yet... Please try another video.'); 
       }
   };
   const [CurrentStep, setCurrentSteps] = useState('');
