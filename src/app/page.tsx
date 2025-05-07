@@ -3,7 +3,6 @@ import Image from "next/image"
 import { BrainCog,Filter,MicOff,BedDouble,PenTool, CheckCircle, Headphones, FastForward, VolumeX, SearchSlash, MoonStar, BookX, Lightbulb } from "lucide-react"
 import SignInButton from "@/components/signInButton"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
