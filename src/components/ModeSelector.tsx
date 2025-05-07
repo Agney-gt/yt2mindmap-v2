@@ -8,7 +8,7 @@ import { Loader2 } from 'lucide-react'; // adjust this import based on your proj
 import { Session } from 'next-auth'; // Ensure this import matches your project setup
 import { EditorView } from '@codemirror/view'; // Ensure this import matches your project setup
 import PricingPortal from "@/components/PricingPortal";
-import { useRouter } from 'next/navigation';
+//import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import { TaskadeSidebar } from "@/components/TaskadeSidebar";
 interface ModeSelectorProps {
@@ -26,7 +26,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [vId, setVId] = useState<string>("5nTuScU70As");
-  const router = useRouter();
+  //const router = useRouter();
   const checkSubtitlesYT = async () => {
     if(mode == "youtube"){
       const videoId = vId
@@ -179,7 +179,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
           await new Promise(resolve => setTimeout(resolve, 2000));
           fetchHtmlContent(taskId);
           setTaskId(taskId);
-          router.push(`/mindmap?id=${taskId}`);
+          //router.push(`/mindmap?id=${taskId}`);
           return data.data;
         }
         await new Promise(resolve => setTimeout(resolve, interval));
