@@ -58,7 +58,8 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
   return (
     <div className="flex flex-col w-screen">
       <ModeSelector editorRef={editorRef} session={session} setTaskId={setTaskId} />
-      <div id="mindmap" className="flex flex-col gap-4">
+      { htmlContents !== `Use Google's Picture-in-Picture extension and Canva’s Grab Text for the best viewing and editing experience.` && (
+      <><div id="mindmap" className="flex flex-col gap-4">
       <iframe
           title="HTML Preview"
           id="mindmapView"
@@ -73,7 +74,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
         />
         
       </div>
-      <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} />
+      <MindmapButtons editorRef={editorRef} taskId={taskId} session={session} /></>)}
     </div>
   );
 }
