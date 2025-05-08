@@ -125,7 +125,12 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       setError('This video is not in English or Captions not loaded yet... Please try another video.');
       return;
     }
-    if (mode === 'longtext') {
+    if (mode === 'longtext' ) {
+      if (inputValue.length < 250) {
+        setLoading(false);
+        setError('Please enter a longer text (250 characters minimum).');
+        return;
+      }
       flag = true
     }
     try {
