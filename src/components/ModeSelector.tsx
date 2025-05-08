@@ -89,6 +89,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       const userEmail = session?.user?.email || 'anonymous';
       const response = await fetch(`https://yt2mapapi.blob.core.windows.net/html/user-${userEmail.split('@')[0]}/${taskId}.html`, { cache: 'no-store' });
       const text = await response.text();
+      
 
       setHtmlContent(text);
       if (editorRef.current) {
@@ -157,15 +158,9 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     'We are experiencing heavy load, your mindmap will be ready soon <sup>TM</sup>'
   ];
   const [messageIndex, setMessageIndex] = useState(0);
-  let messageIntervals: NodeJS.Timeout[] = [];
-
-  const clearAllIntervals = () => {
-      messageIntervals.forEach(interval => clearInterval(interval));
-      messageIntervals = [];
-  };
+  
   const checkTaskStatus = async (taskId: string, maxRetries = 100 , interval = 5000) => {
     let attempts = 0;
-    clearAllIntervals()
     const messageInterval = setInterval(() => {
       setMessageIndex(prev => {
         if (prev === loadingMessages.length - 1) {
@@ -183,6 +178,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
      
         if (data.task.status == 'complete') {
           clearInterval(messageInterval);
+          setMessageIndex(0)
           fetchHtmlContent(taskId);
           setTaskId(taskId);
           setLoading(false);
@@ -196,11 +192,13 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       } catch (error) {
         console.error("Error checking task status:", error);
         clearInterval(messageInterval);
+        setMessageIndex(0)
         
       }
     }
     console.error("Task polling timed out.");
     clearInterval(messageInterval);
+    setMessageIndex(0)
     
   };
   
