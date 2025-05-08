@@ -26,7 +26,17 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [vId, setVId] = useState<string>("5nTuScU70As");
-  
+  const [CurrentStep, setCurrentSteps] = useState('');
+  const loadingMessages = [
+    'Processing video transcript...',
+    'Analyzing content structure...',
+    'Generating mindmap layout...',
+    'Optimizing node connections...',
+    'Applying visual styles...',
+    'Finalizing mindmap...',
+    'We are experiencing heavy load, your mindmap will be ready soon <sup>TM</sup>'
+  ];
+  const [messageIndex, setMessageIndex] = useState(0);
   //const router = useRouter();
   const checkSubtitlesYT = async () => {
     
@@ -147,18 +157,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       setError('This video is not in English or Captions not loaded yet... Please try another video.'); 
       }
   };
-  const [CurrentStep, setCurrentSteps] = useState('');
-  const loadingMessages = [
-    'Processing video transcript...',
-    'Analyzing content structure...',
-    'Generating mindmap layout...',
-    'Optimizing node connections...',
-    'Applying visual styles...',
-    'Finalizing mindmap...',
-    'We are experiencing heavy load, your mindmap will be ready soon <sup>TM</sup>'
-  ];
-  const [messageIndex, setMessageIndex] = useState(0);
-  
+    
   const checkTaskStatus = async (taskId: string, maxRetries = 100 , interval = 5000) => {
     let attempts = 0;
     const messageInterval = setInterval(() => {

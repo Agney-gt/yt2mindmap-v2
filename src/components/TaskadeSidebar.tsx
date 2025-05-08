@@ -1,11 +1,12 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 
 export function TaskadeSidebar() {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     return (
         <>
@@ -25,7 +26,13 @@ export function TaskadeSidebar() {
   transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
                     } pointer-events-auto`}
             >
-                <iframe id='taskade-but'
+                {isLoading && (
+                        <div className="flex items-center justify-center h-full">
+                            <Loader2 className="animate-spin w-6 h-6 text-bg-primary" />
+                            <span className="ml-2 text-bg-primary">Loading...</span>
+                        </div>
+                    )}
+                <iframe id='Researcher'
                     allow="clipboard-read; clipboard-write"
                     src="https://www.taskade.com/a/01JR7MD4P095GY90F24NF6AFDX"
                     width="600"
@@ -33,6 +40,7 @@ export function TaskadeSidebar() {
                     allowFullScreen
                     ref={iframeRef}
                     className="w-full h-full"
+                    onLoad={() => setIsLoading(false)}
                 />
             </div>
           
