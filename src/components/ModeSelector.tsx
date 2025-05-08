@@ -64,7 +64,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     try {
       const response = await fetch("/api/chat-usage", { method: "GET" });
       const data = await response.json();
-      if (data.usage_count > 3 && !data.isSubscribed && !data.isPaid) {
+      if (data.usage_count > 1 && !data.isPaid) {
         setShowPricing(true);
       } else {
         setIsVerified(true);
