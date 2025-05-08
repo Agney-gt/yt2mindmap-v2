@@ -40,7 +40,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   //const router = useRouter();
   const checkSubtitlesYT = async () => {
     
-    if(mode == "youtube"){
+    
       const videoId = vId
     // Check for subtitles first
     const subtitleCheckResponse = await fetch('/api/check-subtitles', {
@@ -54,7 +54,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     return subtitleData.result
    
 
-    }}
+    }
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     
     setInputValue(e.target.value);
@@ -116,47 +116,65 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const handleSubmitWebhook = async () => {
     setLoading(true);
     setError(null);
-    const flag = await checkSubtitlesYT();
-    if (flag === true){
-      try {
-        // Extract video ID from URL
-        
-        const taskId = Math.random().toString(36).substring(2);
-        const RedisSetresponse = await fetch('/api/webhook', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ taskId,vId, email: session?.user?.email }),
-        });
-        const { dbLength } = await RedisSetresponse.json();
-  
-        const response = await fetch('/api/yt-transcript-webhook-old', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }),
-        });
     
-        if (response.ok) {
-          // Increment chat usage count
-          await fetch('/api/chat-usage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-          });
+    let flag = await checkSubtitlesYT();
+    
+    // Early return if video is not in English or captions are not loaded
+    if (mode === 'youtube' && !flag) {
+      setLoading(false);
+      setError('This video is not in English or Captions not loaded yet... Please try another video.');
+      return;
+    }
+    if (mode === 'longtext') {
+      flag = true
+    }
+    try {
+      const taskId = Math.random().toString(36).substring(2);
+  
+      // Common body for Redis set request
+      const redisBody = mode === 'youtube'
+        ? { taskId, vId, email: session?.user?.email }
+        : { taskId, email: session?.user?.email };
+  
+      const RedisSetresponse = await fetch('/api/webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(redisBody),
+      });
+      
+      const { dbLength } = await RedisSetresponse.json();
+  
+      // Common body for YouTube transcript webhook
+      const webhookBody = mode === 'youtube'
+        ? { url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }
+        : { url: inputValue, taskId, dbLength };
+  
+      const response = await fetch('/api/yt-transcript-webhook-old', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(webhookBody),
+      });
+  
+      if (response.ok) {
+        // Increment chat usage count
+        await fetch('/api/chat-usage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        });
         
-          await checkTaskStatus(taskId);
-        } else {
-          console.error("Failed to submit webhook:", await response.text());
-          setError('Failed to process video');
-        }
-      } catch (error) {
-        console.error("Error submitting webhook:", error);
-        setError('An error occurred while processing the video');
-      } finally {
-        setLoading(false);
-      }}
-    else { setLoading(false); 
-      setError('This video is not in English or Captions not loaded yet... Please try another video.'); 
+        await checkTaskStatus(taskId);
+      } else {
+        console.error("Failed to submit webhook:", await response.text());
+        setError('Failed to process video');
       }
+    } catch (error) {
+      console.error("Error submitting webhook:", error);
+      setError('An error occurred while processing the video');
+    } finally {
+      setLoading(false);
+    }
   };
+  
     
   const checkTaskStatus = async (taskId: string, maxRetries = 100 , interval = 5000) => {
     let attempts = 0;
@@ -249,9 +267,10 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
             ) : (
               <> {<TaskadeSidebar/> }
           <div className="flex flex-col items-center justify-center">
+            
             <Input
               id="input"
-              placeholder={`https://www.youtube.com/watch?${vId}`}
+              placeholder={mode === "youtube" ? `https://www.youtube.com/watch?${vId}` : "Input Text Here"}
               value={inputValue}
               onChange={handleInputChange}
               className="mt-2 pl-2 pr-2 lg:w-1/3 mb-6 resize border overflow-auto w-2/3 h-20"

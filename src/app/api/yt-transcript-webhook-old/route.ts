@@ -44,7 +44,8 @@ export async function POST(request: Request) {
   const webhookUrl = isYoutubeLink
   ? youtubeWebhookUrls[index]
   : TextWebhookUrls[index];
-
+  console.log(dbLength)
+  console.log(url)
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
