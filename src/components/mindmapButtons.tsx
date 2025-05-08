@@ -4,7 +4,7 @@ import { useState } from 'react'; // adjust this import based on your project st
 import { Session } from 'next-auth'; // Ensure this import matches your project setup
 import { EditorView } from '@codemirror/view'; // Ensure this import matches your project setup
 import { Button } from '@/components/ui/button'; // Adjust this import based on your project structure
-import { Loader2 } from 'lucide-react'; // Ensure this import matches your project setup
+import { Loader2, Save, Maximize, Code } from 'lucide-react'; // Ensure this import matches your project setup
 
 interface mindmapButtonsProps {
   editorRef: React.RefObject<EditorView | null>;
@@ -58,17 +58,15 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
   };
   return (
     
-      <div className="flex justify-center gap-2 mb-6">
-
+    <div className="fixed bottom-0 right-0 h-1/2 z-50 flex items-center ">
             
-            <div className="flex space-x-2 mb-4 mt-10" id="buttons">
-            <Button variant="default" onClick={handleSave} disabled={saving}>
-              {saving ? <Loader2 className="animate-spin w-4 h-4" /> : 'Save Changes'}
+            <div className="flex flex-col space-y-4 space-x-2 mb-4 mt-10" id="buttons">
+            <Button variant="default" size="icon" onClick={handleSave} disabled={saving} title="Save Changes">
+              {saving ? <Loader2 className="animate-spin w-4 h-4" /> : <Save className="text-white w-4 h-4" />}
             </Button>
-            <Button variant="default" onClick={enterFullscreen}>Go Fullscreen</Button>
-            <Button variant="default" onClick={() => {
-              console.log("clicked")
-           
+            <Button variant="default" size = "icon" title = 'Fullscreen' onClick={enterFullscreen}><Maximize className="text-white w- h-4" /></Button>
+            <Button variant="default" size = "icon" title='Fix Syntax' onClick={() => {
+              
               if (editorRef.current) {
                 const currentContent = editorRef.current.state.doc.toString().replace(/\\"/g, '');
                 const match = currentContent.match(/<div class="mermaid">([\s\S]*?)<\/div>/) || currentContent.match(/<div class='mermaid'>([\s\S]*?)<\/div>/)
@@ -76,8 +74,8 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
                 const cleaned = extracted
                   .replace(/\\n/g, '').replace(/\\/g, '')
                   .replace(/(?<!\()\((?!\()/g, '')   // remove ( not part of ((
-                  .replace(/(?<!\))\)(?!\))/g, '');  // remove ) not part of ))
-
+                  .replace(/(?<!\))\)(?!\))/g, '')  // remove ) not part of ))
+                  .replace(/(\.\.\.|\[|\])/g, ''); // remove extra spaces
                 const fullMatch = match? match[0]: "";
                 const updatedMatch = `<div class="mermaid">${cleaned}</div>`;
                 const fixedContent = currentContent.replace(fullMatch, updatedMatch);
@@ -85,7 +83,7 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
                   changes: { from: 0, to: editorRef.current.state.doc.length, insert: fixedContent }
                 });
               }
-            }}>Fix Syntax</Button>
+            }}><Code className='text-white h-4 w-4' /></Button>
             {/* <Button variant="outline" onClick={handleStartTour}>Show tour</Button> */ }
           </div>
           </div>

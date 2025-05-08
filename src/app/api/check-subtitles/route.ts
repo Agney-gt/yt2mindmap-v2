@@ -23,9 +23,7 @@ export async function POST(request: Request) {
     }
 
     const langdata = await response1.json();
-    console.log(langdata.items[0].snippet.defaultAudioLanguage)
     const result1 = langdata.items[0].snippet.defaultAudioLanguage.slice(0,2) === 'en'  ? langdata.items[0].snippet.defaultAudioLanguage : false;
-    console.log(result1)
     const response2 = await fetch(
       `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${YOUTUBE_API_KEY}`
     );
@@ -39,7 +37,6 @@ export async function POST(request: Request) {
     if (captiondata.items && captiondata.items.length > 0) {
       result2 = true;
     }
-    console.log(result2)
     const result = result1 && result2;
     return NextResponse.json({
       result

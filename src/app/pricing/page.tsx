@@ -22,7 +22,7 @@ export default function PricingPage() {
                 Simple, Transparent Pricing
               </h2>
               <p className="max-w-[85%] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Good Feedback is much appreciated, and will be rewarded with a free 18 month subscription.
+                We would love to hear from you! First 100 users can get 40% off using code: 6FST916O3R.
               </p>
               <Input placeholder="Feedback" value={feedback} onChange ={handleInputChange}/>
               <FeedbackButton feedback={feedback} />
@@ -49,7 +49,7 @@ export default function PricingPage() {
                       <span>No subscriptions, ever.</span>
                     </li>
                   </ul>
-                  
+                 
                 </CardContent>
               </Card>
               <Card className="border bg-background relative">
@@ -94,11 +94,11 @@ export default function PricingPage() {
                       <span>Access insights anytime</span>
                     </li>
                   </ul>
-                    <Button className="mt-6 w-full">
+                    
                     <a href="https://payhip.com/order?link=KSaXZ" target="_blank" rel="noopener noreferrer">
-                      Start Pro
+                      <Button className="mt-6 w-full"> Buy Now! </Button>
                     </a>
-                    </Button>
+                    
                   <p className="mt-2 text-xs text-center text-muted-foreground">30-day money-back guarantee</p>
                 </CardContent>
                 
@@ -113,10 +113,30 @@ export default function PricingPage() {
                 </CardHeader>
               <CardContent>
               <ul className="space-y-2 text-sm list-disc list-inside">
-                <li>Skeptical about budget-friendly AI? I was too, until this no-API-key-needed trick worked.</li>
-                <li>We build on the shoulders of VC backed giants. Keeping our services reliable, stable and scalable.</li>
-                <li>Watching AI costs drop feels like watching Jevons Paradox in action — just like the railroads, telecom and compute before it.</li>
-                <li>Here’s a little secret: building AI apps doesn’t have to break the bank. Want to know how?</li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Unlock the “No API Key” Method</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Build on VC subsisdized AI</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>The Jevons Paradox, Reimagined</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Abstraction vs Control</span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Freemium Cloud Infrastructure </span>
+                </li>
+                <li className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span>Exploits and Tricks </span>
+                </li>
               </ul>
                   {/* <Button className="mt-6 w-full">Buy Now</Button> */}
                   <p className="mt-2 text-xs text-center text-muted-foreground">Its always the same old story</p>

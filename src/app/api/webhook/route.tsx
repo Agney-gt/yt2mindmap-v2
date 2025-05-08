@@ -77,8 +77,6 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     const taskId = body.taskId.trim();
     const vId = body.vId.trim();
-    console.log("taskId", taskId);
-    console.log("vId", vId);
     if (taskId.length < 8 || taskId.length > 32) {
       return NextResponse.json(
         {

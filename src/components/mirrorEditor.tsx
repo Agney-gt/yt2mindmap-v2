@@ -58,13 +58,14 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
   return (
     <div className="flex flex-col w-screen">
       <ModeSelector editorRef={editorRef} session={session} setTaskId={setTaskId} />
-     <div id="mindmap" className={`flex flex-col gap-4 ${htmlContent !== `1`? 'block' : 'hidden'}`}>
+      
+     <div id="mindmap" className={`h-full flex flex-col flex-grow gap-4 ${htmlContent !== `1`? 'block' : 'hidden'}`}>
         
       <iframe
           title="HTML Preview"
           id="mindmapView"
           ref={iframeRef}
-          className="w-full h-[275px] md:h-full border border-gray-300 mb-4 mt-4"
+          className="w-full h-full border border-blue-500 mb-4 mt-4"
           srcDoc={htmlContent} // Binding srcDoc with htmlContent for live preview
           allowFullScreen
         />

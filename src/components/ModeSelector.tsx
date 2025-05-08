@@ -66,7 +66,6 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   }, []);
   
   const getVideoId = (inputValue: string) => {
-    console.log("getting vID")
     if (inputValue.includes("www.youtube.com/")) {
       setVId(inputValue.split('=')[1])
     }
@@ -108,7 +107,6 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     setError(null);
     const flag = await checkSubtitlesYT();
     if (flag === true){
-      console.log("here")
       try {
         // Extract video ID from URL
         
@@ -159,9 +157,15 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     'We are experiencing heavy load, your mindmap will be ready soon <sup>TM</sup>'
   ];
   const [messageIndex, setMessageIndex] = useState(0);
-  
+  let messageIntervals: NodeJS.Timeout[] = [];
+
+  const clearAllIntervals = () => {
+      messageIntervals.forEach(interval => clearInterval(interval));
+      messageIntervals = [];
+  };
   const checkTaskStatus = async (taskId: string, maxRetries = 100 , interval = 5000) => {
     let attempts = 0;
+    clearAllIntervals()
     const messageInterval = setInterval(() => {
       setMessageIndex(prev => {
         if (prev === loadingMessages.length - 1) {
@@ -179,12 +183,11 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
      
         if (data.task.status == 'complete') {
           clearInterval(messageInterval);
-          setLoading(false);
-          setError(null);
-          attempts = 0;
-          await new Promise(resolve => setTimeout(resolve, 2000));
           fetchHtmlContent(taskId);
           setTaskId(taskId);
+          setLoading(false);
+          setError(null);
+          await new Promise(resolve => setTimeout(resolve, 2000));
           //router.push(`/mindmap?id=${taskId}`);
           return data.data;
         }
@@ -193,12 +196,12 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       } catch (error) {
         console.error("Error checking task status:", error);
         clearInterval(messageInterval);
-        attempts = 0;
+        
       }
     }
     console.error("Task polling timed out.");
     clearInterval(messageInterval);
-    attempts = 0;
+    
   };
   
   
