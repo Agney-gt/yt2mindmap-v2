@@ -147,7 +147,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       // Common body for YouTube transcript webhook
       const webhookBody = mode === 'youtube'
         ? { url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }
-        : { url: inputValue, taskId, dbLength };
+        : { url: inputValue , taskId, dbLength };
   
       const response = await fetch('/api/yt-transcript-webhook-old', {
         method: 'POST',
