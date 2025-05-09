@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     title: "YouTube to Mind Map - Visual Learning Revolution",
-    description: "Convert YouTube videos into interactive mind maps. Learn faster, understand better, and retain more with AI-powered visual learning.",
+    description: "Burnt out from digital noise? Turn YouTube videos into mind maps, minus the clutter for FREE!",
     images: ["/opengraph-image.png"]
   },
   twitter: {
     card: "summary_large_image",
     title: "Y2Map - Convert YouTube Videos to Mind Maps",
-    description: "Transform YouTube videos into structured mind maps for better learning and retention",
+    description: "Burnt out from digital noise? Turn YouTube videos into mind maps, minus the clutter for FREE!",
     images: ["https://www.y2map.com/opengraph-image.png"],
   },
   robots: {
