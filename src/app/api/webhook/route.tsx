@@ -3,7 +3,7 @@ import { redis } from "@/lib/redis";
 import { Ratelimit } from "@upstash/ratelimit";
 const ratelimit = new Ratelimit({
   redis,
-  limiter: Ratelimit.slidingWindow(3, "1 m"),
+  limiter: Ratelimit.fixedWindow(1, "1 m"),
   analytics: true,
 });
 
@@ -33,6 +33,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
   request.headers.get("x-real-ip") || 
   "anonymous";
+  console.log(ip)
 
 
 

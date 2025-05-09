@@ -148,7 +148,11 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       });
       
       const { dbLength } = await RedisSetresponse.json();
-  
+      if (!RedisSetresponse.ok) {
+        console.error("Failed to set Redis data:", await RedisSetresponse.text());
+        setError('Rate Limit Exceeded. Please try again later.');
+        return;
+      }
       // Common body for YouTube transcript webhook
       const webhookBody = mode === 'youtube'
         ? { url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }
@@ -174,7 +178,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       }
     } catch (error) {
       console.error("Error submitting webhook:", error);
-      setError('An error occurred while processing the video');
+      setError('Rate Limit Exceeded. Please try again later.');
     } finally {
       setLoading(false);
     }
