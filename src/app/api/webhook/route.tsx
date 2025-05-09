@@ -29,7 +29,12 @@ interface TaskData {
 
 export async function POST(request: Request): Promise<NextResponse> {
   try {
-    const ip = request.headers.get("x-forwarded-for") ?? "anonymous";
+    const ip = 
+  request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+  request.headers.get("x-real-ip") || 
+  "anonymous";
+
+
 
     // Rate limit check
     const { success, limit, remaining, reset } = await ratelimit.limit(ip);
