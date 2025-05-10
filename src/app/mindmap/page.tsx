@@ -41,7 +41,7 @@ export default async function MindmapPage({
         <div className="flex-1 text-center">
      
             <h1 className="flex justify-center text-3xl font-bold items-center tracking-tighter sm:text-4xl md:text-5xl mb-6">
-                Youtube to <span className="text-purple-100">   MindMap</span>
+                Youtube to&nbsp;<span className="text-blue-200 ">MindMap</span>
             </h1>
             <div className="flex">
            <MindmapEditor session={session} htmlContents={htmlContent}/>

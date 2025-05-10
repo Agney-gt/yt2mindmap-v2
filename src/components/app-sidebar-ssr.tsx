@@ -39,7 +39,7 @@ export async function AppSidebar() {
     <Sidebar id="left-sidebar">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className='text-center justify-center font-bold text-[21px]'>Your Mindmaps</SidebarGroupLabel>
+          <SidebarGroupLabel className='text-center justify-center text-bg-primary font-bold text-[21px]'>Your Mindmaps</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <Suspense fallback={<LoadingSidebar />}>
