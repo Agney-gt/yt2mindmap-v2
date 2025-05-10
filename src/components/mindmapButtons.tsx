@@ -62,9 +62,9 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
             
             <div className="flex flex-col space-y-4 space-x-2 mb-4 mt-10" id="buttons">
             <Button variant="default" size="icon" onClick={handleSave} disabled={saving} title="Save Changes">
-              {saving ? <Loader2 className="animate-spin w-4 h-4" /> : <Save className="text-black w-4 h-4" />}
+              {saving ? <Loader2 className="animate-spin w-4 h-4" /> : <Save className="text-white w-4 h-4" />}
             </Button>
-            <Button variant="default" size = "icon" title = 'Fullscreen' onClick={enterFullscreen}><Maximize className="text-black w- h-4" /></Button>
+            <Button variant="default" size = "icon" title = 'Fullscreen' onClick={enterFullscreen}><Maximize className="text-white w- h-4" /></Button>
             <Button variant="default" size = "icon" title='Fix Syntax' onClick={() => {
               
               if (editorRef.current) {
@@ -83,7 +83,7 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
                   changes: { from: 0, to: editorRef.current.state.doc.length, insert: fixedContent }
                 });
               }
-            }}><Code className='text-black h-4 w-4' /></Button>
+            }}><Code className='text-white h-4 w-4' /></Button>
             {/* <Button variant="outline" onClick={handleStartTour}>Show tour</Button> */ }
           </div>
           </div>
