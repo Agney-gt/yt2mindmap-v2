@@ -415,6 +415,12 @@ export default function Home() {
                 </Card>
               ))}
             </div>
+            <p
+              className="text-l cursor-pointer text-blue-500 hover:underline"
+              onClick={() => window.open('/blogs', '_blank')}
+            >
+              Want to learn more? Check out our blog!
+            </p>
           </div>
         </section>
 
