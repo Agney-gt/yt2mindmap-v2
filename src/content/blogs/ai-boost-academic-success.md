@@ -1,12 +1,12 @@
 ---
 title: "Unlock Your Thinking: Boosting Academic Success with Visual Learning Tools"
 description: "Discover how AI-enhanced visual learning tools like mind maps, flashcards, and transcription services can revolutionize your study habits, improve memory, and boost academic performance."
-image: "https://eobemzviqxxlcrwuygkr.supabase.co/storage/v1/object/public/yt2insight//ai-mind-maps-boost-success.png" # Replace with your actual image URL
+image: "https://wwww.y2map.com/blog-1.jpg" # Replace with your actual image URL
 openGraph:
   title: "Unlock Your Thinking: Boosting Academic Success with Visual Learning Tools"
   description: "Learn how AI-powered visual tools transform studying, enhance memory, and lead to better grades. Explore practical applications and expert insights."
   images:
-    - url: "https://eobemzviqxxlcrwuygkr.supabase.co/storage/v1/object/public/yt2insight//ai-mind-maps-boost-success.png" # Replace with your actual image URL
+    - url: "https://wwww.y2map.com/blog-1.jpg" # Replace with your actual image URL
       width: 1200
       height: 630
       alt: "A collage illustrating various AI-enhanced visual learning tools like mind maps, flashcards, and notes."
