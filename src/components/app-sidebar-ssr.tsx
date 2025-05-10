@@ -24,7 +24,7 @@ async function fetchMindmaps(email: string) {
 // Loading component
 function LoadingSidebar() {
   return (
-    <div className="p-4 text-gray-500">Are Loading...<Loader2 className="animate-spin w-6 h-6 text-bg-primary" /></div>
+    <div className="p-4 text-gray-500">Loading...<Loader2 className="animate-spin w-6 h-6 text-bg-primary" /></div>
     
   );
 }
