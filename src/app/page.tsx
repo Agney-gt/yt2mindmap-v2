@@ -359,31 +359,52 @@ export default function Home() {
             </div>
             <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 py-12">
               {[
-                  {
-                      "q": "How accurate is the AI at extracting key points?",
-                      "a": "Didn't expect the AI to be this accurate, but ChatGPT-4o is powerful... It’s surprising how much time I save with accurate key point extractions from videos. If you’ve ever felt overwhelmed by video content, this might change things for you."
-                  },
-                  {
-                      "q": "Can I use MindMapAI with any YouTube video?",
-                      "a": "It works with any YouTube video that has enabled captions."
-                  },
-                  {
-                      "q": "How long does it take to generate a mind map?",
-                      "a": "We're continuously improving speed, but currently, most videos process in under 90 seconds. You can always watch the video while it converts!"
-                  },
-                  {
-                      "q": "Is there a limit to how many videos I can process?",
-                      "a": "We've all felt the pinch of limits, but we're planning ways to help you do more. We've made it easier for paid users to explore more videos without hitting limits."
-                  },
-                  {
-                      "q": "Additional Tips",
-                      "a": "Try a short video first. You'll see the magic in under a minute."
-                  },
-                  {
-                      "q": "Final Thought",
-                      "a": "Turns out, productivity is just a mind map away."
-                  }
-              ].map((faq, i) => (
+    {
+        "q": "How to convert YouTube video to mind map?",
+        "a": "Listen attentively, pause frequently, capture key ideas, and structure them into a mind map. Mind mapping turns passive watching into active learning by forcing focus and reflection."
+    },
+    {
+        "q": "Can ChatGPT generate a mind map?",
+        "a": "Yes, ChatGPT can draft a structured outline that serves as a foundation for a mind map, helping you organize key concepts and connections."
+    },
+    {
+        "q": "What is mind mapping YouTube?",
+        "a": "It’s a method of extracting and organizing insights from YouTube videos to avoid mindless consumption and instead create a clear, structured summary."
+    },
+    {
+        "q": "Can GPT-4 create mind maps?",
+        "a": "GPT-4 can help by generating structured outlines and suggesting themes, making the process of mind mapping more efficient and insightful."
+    },
+    {
+        "q": "Is Brain Mapping a real thing?",
+        "a": "Yes, in neuroscience, brain mapping involves studying brain functions, but mind mapping is more about visually organizing thoughts and ideas."
+    },
+    {
+        "q": "What is mind mapping best source of?",
+        "a": "Clarity. It helps you distill scattered thoughts into coherent structures, making it easier to remember and review insights."
+    },
+    {
+        "q": "How to generate a mind map?",
+        "a": "Start with a central idea, branch out with related topics, and add finer details as twigs. Keep it simple to maintain clarity."
+    },
+    {
+        "q": "What is the AI tool to analyze YouTube videos?",
+        "a": "ChatGPT, paired with video analysis tools, can summarize content and help organize insights into mind maps."
+    },
+    {
+        "q": "How to get ChatGPT to make a mind map?",
+        "a": "Provide a topic or video summary, and ChatGPT will draft a structured outline, helping you create a clear and insightful mind map."
+    },
+    {
+        "q": "What is the best app for making mind maps?",
+        "a": "Y2MAP offers more in-depth mindmaps focussing on key points over summary generation."
+    },
+    {
+        "q": "Does Google have a MindMap tool?",
+        "a": "Yes, Google Jamboard can be used for mind mapping, but it’s basic compared to dedicated mind mapping apps."
+    }
+]
+.map((faq, i) => (
                 <Card key={i} className="border bg-background">
                   <CardHeader>
                     <CardTitle className="text-xl">{faq.q}</CardTitle>
