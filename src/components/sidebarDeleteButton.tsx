@@ -51,7 +51,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ mindmapId }) => {
     <button
       onClick={handleDelete}
       disabled={isDeleting}
-      className="ml-4 text-red-500 hover:text-red-700 text-right"
+      className="ml-4 text-red-500 hover:text-red-700 text-right absolute right-0"
     >
       {isDeleting ? 'Deleting...' : <X className="w-4 h-4" />}
     </button>
