@@ -415,15 +415,19 @@ export default function Home() {
                 </Card>
               ))}
             </div>
-            <p
-              className="text-l cursor-pointer text-blue-500 hover:underline"
-              onClick={() => window.open('/blogs', '_blank')}
+            
+
+          </div>
+          
+        </section>
+        <a
+              href="/blogs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex text-l text-center justify-center cursor-pointer text-blue-500 hover:underline"
             >
               Want to learn more? Check out our blog!
-            </p>
-          </div>
-        </section>
-
+            </a>       
         {/* CTA */}
         <section id="get-started" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
@@ -435,7 +439,7 @@ export default function Home() {
               <div className="flex flex-col gap-2 min-[400px]:flex-row pt-4">
               
                   
-                  <SignInButton text="Utilize Watch History" />
+                  <SignInButton text="Turn Your Watch History into an Asset!" />
          
                 
               </div>
