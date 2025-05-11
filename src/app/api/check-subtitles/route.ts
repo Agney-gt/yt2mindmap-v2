@@ -22,9 +22,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Failed to fetch captions data' }, { status: response1.status });
     }
 
-    const langdata = await response1.json();
-    const result1 = langdata.items[0].snippet.defaultAudioLanguage.slice(0,2) === 'en'  ? langdata.items[0].snippet.defaultAudioLanguage : false;
-    const response2 = await fetch(
+    // const langdata = await response1.json();
+    // console.log(langdata.items[0].snippet);
+    // const result1 = langdata.items[0].snippet.defaultAudioLanguage.slice(0,2) === 'en'  ? langdata.items[0].snippet.defaultAudioLanguage : false;
+     const response2 = await fetch(
       `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${YOUTUBE_API_KEY}`
     );
 
@@ -32,12 +33,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Failed to fetch captions data' }, { status: response2.status });
     }
 
-    const captiondata = await response2.json();
-    let result2 = false;
+     const captiondata = await response2.json();
+     let result2 = false;
     if (captiondata.items && captiondata.items.length > 0) {
-      result2 = true;
-    }
-    const result = result1 && result2;
+       result2 = true;
+     }
+     const result = result2;
+    console.log('result:', result); 
     return NextResponse.json({
       result
     });

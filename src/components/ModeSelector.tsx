@@ -122,7 +122,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     // Early return if video is not in English or captions are not loaded
     if (mode === 'youtube' && !flag) {
       setLoading(false);
-      setError('This video is not in English or Captions not loaded yet... Please try another video.');
+      setError('Error... Please try another video.');
       return;
     }
     if (mode === 'longtext' ) {
@@ -195,8 +195,9 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
         return prev + 1; // Otherwise, increment the index
       });
     }, 20000);
-
+    await new Promise(resolve => setTimeout(resolve, 40000));
     while (attempts < maxRetries) {
+      console.log(attempts)
       try {
         const res = await fetch(`/api/webhook?taskId=${taskId}`);
         const data = await res.json();

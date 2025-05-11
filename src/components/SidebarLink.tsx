@@ -20,7 +20,6 @@ export default function SidebarMindmapLink({ id, title, createdAt }: Props) {
   const [progress, setProgress] = useState(0)
   useEffect(() => {
     setLoading(isPending);
-    console.log(isPending)
     const start = Date.now()
     let frameID = 0;
     const updateProgress = () => {
@@ -34,7 +33,6 @@ export default function SidebarMindmapLink({ id, title, createdAt }: Props) {
     }
 
     requestAnimationFrame(updateProgress)
-    console.log(frameID)
     return () => cancelAnimationFrame(frameID)
   
   }, [isPending]);
