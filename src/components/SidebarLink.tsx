@@ -24,7 +24,7 @@ export default function SidebarMindmapLink({ id, title, createdAt }: Props) {
     let frameID = 0;
     const updateProgress = () => {
       const elapsed = Date.now() - start
-      const percentage = Math.min((elapsed / 8000) * 100, 100)
+      const percentage = Math.min((elapsed / 11000) * 100, 100)
       setProgress(percentage)
 
       if (percentage < 100) {

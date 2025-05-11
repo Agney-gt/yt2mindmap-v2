@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 
 
 export async function POST(request: Request) {
-  const { url, taskId,dbLength } = await request.json();
+  const { isPaid,url, taskId,dbLength } = await request.json();
+  console.log(isPaid)
   
   // Check if the input is a YouTube link
   const isYoutubeLink = url.includes('https://www.youtube.com/');

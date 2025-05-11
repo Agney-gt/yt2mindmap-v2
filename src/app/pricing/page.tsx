@@ -1,12 +1,25 @@
 "use client"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle } from "lucide-react"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { FeedbackButton } from "@/components/FeedbackButton"
+import BuyButton from "@/components/buyButton"
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 export default function PricingPage() {
+  const [isLogin,setIsLogin] = useState(false);
+  
+  const fetchSession = async () => {
+    const session = await getServerSession(authOptions);
+    if (session?.user?.email) {
+      setIsLogin(true);
+    }
+  };
 
+  useState(() => {
+    fetchSession();
+  });
   const [feedback, setFeedback] = useState('');
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
@@ -21,11 +34,12 @@ export default function PricingPage() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Simple, Transparent Pricing
               </h2>
-              <p className="max-w-[85%] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                We would love to hear from you! First 100 users can get 40% off using code: 6FST916O3R.
+              <p className="flex text-center justify-center  text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Unlimited access for the first 100 customers to ensure a great experience for all. Will scale infrastructure based on demand. Get 40% off using code: 6FST916O3R.
               </p>
+              <div className={` ${isLogin === true ? 'block' : 'hidden'}`}>
               <Input placeholder="Feedback" value={feedback} onChange ={handleInputChange}/>
-              <FeedbackButton feedback={feedback} />
+              <FeedbackButton feedback={feedback} /></div>
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
               <Card className="border bg-background">
@@ -71,7 +85,7 @@ export default function PricingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span> Boost focus & retention</span>
+                      <span>Service Quality Assurance </span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
@@ -83,20 +97,20 @@ export default function PricingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Exclusive Builder Community</span>
+                      <span>Exclusive Support</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Make Video Content Stick</span>
+                      <span>Limited Seats</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Access insights anytime</span>
+                      <span>Dedicated Infrastructure</span>
                     </li>
                   </ul>
                     
                     <a href="https://payhip.com/order?link=KSaXZ" target="_blank" rel="noopener noreferrer">
-                      <Button className="mt-6 w-full"> Buy Now! </Button>
+                      <BuyButton/>
                     </a>
                     
                   <p className="mt-2 text-xs text-center text-muted-foreground">30-day money-back guarantee</p>

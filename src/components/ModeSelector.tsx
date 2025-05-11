@@ -27,6 +27,8 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const [error, setError] = useState<string | null>(null);
   const [vId, setVId] = useState<string>("5nTuScU70As");
   const [CurrentStep, setCurrentSteps] = useState('');
+  const [isPaid,setIsPaid] = useState(false);
+  const [usageCount, setUsageCount] = useState(0);
   const loadingMessages = [
     'Processing video transcript...',
     'Analyzing content structure...',
@@ -63,8 +65,10 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const handleVerification = useCallback(async () => {
     try {
       const response = await fetch("/api/chat-usage", { method: "GET" });
-      const data = await response.json();
-      if (data.usage_count > 1 && !data.isPaid) {
+      const {usage_count, isPaid} = await response.json();
+      setIsPaid(isPaid);
+      setUsageCount(usage_count);
+      if (usage_count > 1 && !isPaid) {
         setShowPricing(true);
       } else {
         setIsVerified(true);
@@ -116,7 +120,12 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   const handleSubmitWebhook = async () => {
     setLoading(true);
     setError(null);
-    
+    if (usageCount > 1 && !isPaid) {
+      setLoading(false);
+      setError('Please subscribe to use this feature');
+      setShowPricing(true);
+      return;
+    }
     let flag = await checkSubtitlesYT();
     
     // Early return if video is not in English or captions are not loaded
@@ -155,8 +164,8 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       }
       // Common body for YouTube transcript webhook
       const webhookBody = mode === 'youtube'
-        ? { url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }
-        : { url: inputValue , taskId, dbLength };
+        ? { isPaid,url: `https://www.youtube.com/watch?v=${vId}`, taskId, dbLength }
+        : { isPaid,url: inputValue , taskId, dbLength };
   
       const response = await fetch('/api/yt-transcript-webhook-old', {
         method: 'POST',
