@@ -7,6 +7,7 @@ import { FeedbackButton } from "@/components/FeedbackButton"
 import BuyButton from "@/components/buyButton"
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { Button } from "@/components/ui/button"
 export default function PricingPage() {
   const [isLogin,setIsLogin] = useState(false);
   
@@ -122,8 +123,11 @@ export default function PricingPage() {
                   <CardTitle>Build</CardTitle>
                   <CardDescription>For Entrepreneurs</CardDescription>
                   <div className="mt-4 text-4xl font-bold">
-                    $9.95<span className="text-base font-normal text-muted-foreground"> for 125 a page E-Book</span>
+                    $9.95<span className="text-base font-normal text-muted-foreground"> for 150 a page E-Book</span>
                   </div>
+                  <a href="https://payhip.com/b/IA5Yv" target="_blank" rel="noopener noreferrer">
+                      <Button className="mt-6 w-full">Buy Now!</Button>
+                    </a>
                 </CardHeader>
               <CardContent>
               <ul className="space-y-2 text-sm list-disc list-inside">
