@@ -197,7 +197,6 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     }, 20000);
     await new Promise(resolve => setTimeout(resolve, 40000));
     while (attempts < maxRetries) {
-      console.log(attempts)
       try {
         const res = await fetch(`/api/webhook?taskId=${taskId}`);
         const data = await res.json();
@@ -232,7 +231,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
   
 
   const VerificationBox = () => (
-    <>{console.log("verification box")}
+    <>
     <div className="flex flex-col items-center">
       
       <p className="mb-4 text-gray-600">Please complete the verification to continue</p>

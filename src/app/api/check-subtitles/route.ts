@@ -39,7 +39,6 @@ export async function POST(request: Request) {
        result2 = true;
      }
      const result = result2;
-    console.log('result:', result); 
     return NextResponse.json({
       result
     });

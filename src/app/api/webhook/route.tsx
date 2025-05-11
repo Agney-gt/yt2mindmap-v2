@@ -33,8 +33,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
   request.headers.get("x-real-ip") || 
   "anonymous";
-  console.log(ip)
-
+  
 
 
     // Rate limit check
