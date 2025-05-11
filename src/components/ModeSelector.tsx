@@ -122,7 +122,7 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
     setError(null);
     if (usageCount > 1 && !isPaid) {
       setLoading(false);
-      setError('Please subscribe to use this feature');
+      setError('Unlimited mindmaps for paid users only!');
       setShowPricing(true);
       return;
     }
