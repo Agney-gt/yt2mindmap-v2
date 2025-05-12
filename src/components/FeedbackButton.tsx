@@ -8,6 +8,7 @@ export function FeedbackButton({ feedback }:{feedback: string}) {
   return (
     <>
       <Button
+       className = 'mt-6'
         onClick={async () => {
           try {
             setLoading(true);

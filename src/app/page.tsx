@@ -21,7 +21,7 @@ export default function Home() {
                   
                   <div className="mt-4 relative w-full max-w-[800px] aspect-[1574/832] overflow-hidden rounded-lg border bg-background shadow-xl">
                 <Image
-                  src="/mindmap+.jpg"
+                  src="/mindmap+.webp"
                   width={1574}
                   height={832}
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
@@ -70,7 +70,7 @@ export default function Home() {
                 </li>
                 <li className="flex gap-2">
                   <MoonStar className="h-5 w-5 text-red-500 shrink-0" />
-                  <span>Sleep? Not when your brain’s binge-watching war crimes or emotional dramas at 1 AM.</span>
+                  <span>Sleep? Not when your brain’s binge-watching war crimes or emotionally charged narratives at 1 AM.</span>
                 </li>
                 <li className="flex gap-2">
                   <BookX className="h-5 w-5 text-red-500 shrink-0" />
@@ -133,11 +133,7 @@ export default function Home() {
                     The Pareto Principle of Learning
                   </h2>
                   
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    A typical crash course might include 64 hours of lectures, 1372 comments and discussions, and 2 hours of
-                    actual insights...
-                  </p>
-                  <p className="max-w-[600px] font-bold md:text-xl">
+                 <p className="mt-4 max-w-[600px]  md:text-xl">
                     But the truth? We only use 20% of what we watch.
                   </p>
                 </div>
@@ -150,9 +146,25 @@ export default function Home() {
                     <CheckCircle className="h-5 w-5 text-primary" />
                     <span>Use AI to structure insights effortlessly</span>
                   </li>
+                                    <li className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span>Save time while staying informed. </span>
+                  </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Turn videos into a tool for deeper understanding</span>
+                    <span>Dramatic delivery stresses the mind, reduces clarity. </span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span>Background Noise makes key points forgettable.  </span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span>Sensational overload blocks clear decision-making. </span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span>Works best with news, podcasts, documentaries and presentations. </span>
                   </li>
                 </ul>
                 
@@ -165,16 +177,16 @@ export default function Home() {
               </div>
 
               <div className="mx-auto flex items-center justify-center">
-                 <div className="ml-2 mt-4 relative w-full max-w-[900px] aspect-[1700/832] overflow-hidden rounded-lg border bg-background shadow-xl  ">
+                 
                 <Image
-                  src="/pareto.jpg"
+                  src="/pie-chart-80-svgrepo-com.svg"
                   width={1700}
                   height={832}
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
-                  className="object-cover w-full h-full scale-175 translate-x-1/3"
+                  className="object-cover w-full h-full mt-80 ml-33 scale-150"
                   priority
                 />
-                </div>
+               
               </div>
             </div>
           </div>
@@ -188,7 +200,7 @@ export default function Home() {
                 <div className="space-y-2">
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Mission</h2>
                   <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  From endless YouTube noise to my own dynamic journal, my video history transformed into insights I actually use. Suddenly, something just felt different—less mindless scrolling, more structured thinking, and complete control over my time.                  </p>
+                  From endless YouTube noise to my own dynamic journal, my video history transformed into insights I actually use. After building and using this app, my morning routines became clutter free! Less scrolling, more structured thinking, and complete control over my time while still staying upto date with the latest shenanigans of my favourite creators. All with a peaceful classical music score playing in the background.                  </p>
                   
                 </div>
                 <div className="flex items-center gap-4 pt-4">

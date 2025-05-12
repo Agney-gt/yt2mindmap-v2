@@ -16,8 +16,8 @@ export default function BuyButton() {
   }, []);
 
   return (
-    <a href="https://payhip.com/order?link=KSaXZ" target="_blank" rel="noopener noreferrer">
+    
       <Button className="mt-6 w-full">{count !== null ? `${count} seats remaining` : 'Loading...'}</Button>
-    </a>
+    
   );
 }
