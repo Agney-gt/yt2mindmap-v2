@@ -200,7 +200,7 @@ export default function Home() {
                 <div className="space-y-2">
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Mission</h2>
                   <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  From endless YouTube noise to my own dynamic journal, my video history transformed into insights I actually use. After building and using this app, my morning routines became clutter free! Less scrolling, more structured thinking, and complete control over my time while still staying upto date with the latest shenanigans of my favourite creators. All with a peaceful classical music score playing in the background.                  </p>
+                  From endless YouTube noise to my own dynamic journal, my video history transformed into insights I actually use. After building and using this app, my morning routines became clutter free! Less scrolling, more structured thinking, and complete control over my time while still staying upto date with the latest shenanigans of my favourite creators. All with a peaceful classical music score playing in the background... or bettery yet, in silence.                  </p>
                   
                 </div>
                 <div className="flex items-center gap-4 pt-4">
