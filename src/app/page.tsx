@@ -211,14 +211,15 @@ export default function Home() {
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container px-4 md:px-6">
-          <Image
+        <Image
                     src="/Comparison.webp"
                     width={900}
                     height={630}
                     alt="MindMapAI founder working on the platform"
-                    className="object-contain mt-8 ml-16"
+                    className="object-contain mt-8 md:ml-20"
                   />
+          <div className="container px-4 md:px-6">
+          
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2">
             
               <div className="flex flex-col gap-2 rounded-lg border bg-background p-6">
