@@ -181,7 +181,7 @@ export default function Home() {
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-[1fr_400px] lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Mission</h2>
+                  <h2 className="flex text-center justify-center mb-4 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Mission</h2>
                   <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   From endless YouTube noise to my own dynamic journal, my video history transformed into insights I actually use. After building and using this app, my morning routines became clutter free! Less scrolling, more structured thinking, and complete control over my time while still staying upto date with the latest shenanigans of my favourite creators. All with a peaceful classical music score playing in the background... or bettery yet, in the stillness of silence.                  </p>
                   
@@ -250,7 +250,7 @@ export default function Home() {
                   <span>	Designed for quick scanning, with emphasis on key phrases and visual cues. </span>
                 </li>
                 <li className="flex gap-2">
-                <XCircle className="h-5 w-5" color='red' />
+                <Check color="green" className='h-5 w-5' />
                   <span>Editor and Copilot available for all users.</span>
                 </li>
                 </ul>
