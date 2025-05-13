@@ -24,17 +24,17 @@ async function fetchMindmaps(): Promise<Mindmap[]> {
   if (!response.ok) throw new Error("Failed to fetch mindmaps");
   return await response.json();
 }
-
+let mindmaps: Mindmap[] = [];
 // Separate component to handle mindmap fetching and rendering
 export function SidebarMindmaps() {
-    const [mindmaps, setMindmaps] = useState<Mindmap[]>([]);
+    
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         async function loadMindmaps() {
           try {
             const data = await fetchMindmaps();
             console.log(data)
-            setMindmaps(data);
+            mindmaps = data
           } catch (err) {
             console.log(err)
           } finally {

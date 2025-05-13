@@ -22,6 +22,7 @@ export default function SidebarMindmapLink({ id, title, createdAt }: Props) {
     setLoading(isPending);
     const start = Date.now()
     let frameID = 0;
+    if(isPending) {
     const updateProgress = () => {
       const elapsed = Date.now() - start
       const percentage = Math.min((elapsed / 11000) * 100, 100)
@@ -31,8 +32,9 @@ export default function SidebarMindmapLink({ id, title, createdAt }: Props) {
         frameID = requestAnimationFrame(updateProgress)
       }
     }
-
+    
     requestAnimationFrame(updateProgress)
+  }
     return () => cancelAnimationFrame(frameID)
   
   }, [isPending]);
