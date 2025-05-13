@@ -1,6 +1,6 @@
 
 import Image from "next/image"
-import { BrainCog,Filter,MicOff,BedDouble,PenTool, CheckCircle, Headphones, FastForward, VolumeX, SearchSlash, MoonStar, BookX, Lightbulb } from "lucide-react"
+import { BrainCog,Filter,MicOff,BedDouble,PenTool, Check, CheckCircle, Headphones, FastForward, VolumeX, SearchSlash, MoonStar, BookX, Lightbulb, XCircle } from "lucide-react"
 import SignInButton from "@/components/signInButton"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -123,21 +123,19 @@ export default function Home() {
         </section>
 
         {/* Transformation */}
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="flex flex-col justify-center items-center w-full py-12 md:py-24 lg:py-32  bg-gradient-to-b from-background to-muted">
         
-          <div className="container px-4 md:px-6">
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
+          
                 <div className="space-y-2">
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                     The Pareto Principle of Learning
                   </h2>
                   
-                 <p className="mt-4 max-w-[600px]  md:text-xl">
-                    But the truth? We only use 20% of what we watch.
+                 <p className="flex items-center justify-center mt-4 max-w-[600px]  md:text-xl text-muted-foreground">
+                    We only use 20% of what we watch...
                   </p>
                 </div>
-                <ul className="space-y-2">
+                <ul className="mt-4 rounded-lg border bg-background p-6 space-y-2">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-5 w-5 text-primary" />
                     <span>Capture only the essentials (no information overload)</span>
@@ -173,22 +171,7 @@ export default function Home() {
                 <SignInButton text="Free Forever" />
          
                   
-                </div>
-              </div>
-
-              <div className="mx-auto flex items-center justify-center">
-                 
-                <Image
-                  src="/pie-chart-80-svgrepo-com.svg"
-                  width={1700}
-                  height={832}
-                  alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
-                  className="object-cover w-full h-full mt-80 ml-33 scale-150"
-                  priority
-                />
-               
-              </div>
-            </div>
+                
           </div>
         </section>
         
@@ -227,7 +210,89 @@ export default function Home() {
             </div>
           </div>
         </section>
-
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+          <div className="container px-4 md:px-6">
+          <Image
+                    src="/comparison.webp"
+                    width={900}
+                    height={630}
+                    alt="MindMapAI founder working on the platform"
+                    className="object-contain mt-8 ml-16"
+                  />
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2">
+            
+              <div className="flex flex-col gap-2 rounded-lg border bg-background p-6">
+                <h3 className="text-xl font-bold">Our Mindmaps</h3>
+                <ul className="mt-2 space-y-4">
+                <li className="flex gap-2">
+                <Check color="green" className='h-5 w-5' />
+                  <span>Clearly organized around actionable insights and real-world relevance.</span>
+                </li>
+                <li className="flex gap-2">
+                <Check color="green" className='h-5 w-5' />
+                  <span>Uses clear points, including quotes, practical tips, problems, solutions, and facts.</span>
+                </li>
+                <li className="flex gap-2">
+                <Check color="green" className='h-5 w-5' />
+                  <span>Minimizes mental strain by using concise language and structured points.</span>
+                </li><li className="flex gap-2">
+                  <Check color="green" className='h-5 w-5' />
+                  <span>Integrates key points into visual mind maps, aiding memory retention.</span>
+                </li>
+                
+                <li className="flex gap-2">
+                <Check color="green" className='h-5 w-5' />
+                  <span>Active critical thinking and reflection prompts with counterpoints, and trends. </span>
+                </li>
+                <li className="flex gap-2">
+                <Check color="green" className='h-5 w-5' />
+                  <span>	Designed for quick scanning, with emphasis on key phrases and visual cues. </span>
+                </li>
+                </ul>
+                <div className="mt-4 text-sm text-muted-foreground">
+                  <p className="italic">
+                  Breaks down complex topics into digestible parts with minimal loss in depth. Inbuilt AI copilot to help you research and enrich mindmaps.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 rounded-lg border bg-background p-6">
+                <h3 className="text-xl font-bold">Competitors Mindmaps</h3>
+                <ul className="mt-2 space-y-4">
+                <li className="flex gap-2">
+                  <XCircle className="h-5 w-5" color='red' />
+                  <span>Loosely structured around thematic segments without clear actionable connections.</span>
+                </li>
+                <li className="flex gap-2">
+                <XCircle className="h-5 w-5" color='red' />
+                  <span>Text-heavy and verbose, Overwhelms users with dense, unstructured information.. </span>
+                </li> 
+                <li className="flex gap-2">
+                <XCircle className="h-5 w-5" color='red' />
+                  <span>Focuses on content coverage, often at the expense of practical takeaways.</span>
+                </li>
+                <li className="flex gap-2">
+                <XCircle className="h-5 w-5" color='red' />
+                  <span>Uses linear text boxes that are hard to remember and require zoom and scrolls.</span>
+                </li>
+                
+                <li className="flex gap-2">
+                <XCircle className="h-5 w-5" color='red' />
+                  <span>Passive reading with limited prompts for reflection or deeper thought. </span>
+                </li>
+                <li className="flex gap-2">
+                <XCircle className="h-5 w-5" color='red' />
+                  <span>Lot of fluff and cumbersome clutter, lacking quick-scan features and prominent highlights. </span>
+                </li>
+                </ul>
+                <div className="mt-4 text-sm text-muted-foreground">
+                  <p className="italic">
+                  Struggles to simplify without oversimplifying, often leading to superficial understanding. No inbuilt copilot.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* Pricing */}
         <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
           <PricingPage/>
