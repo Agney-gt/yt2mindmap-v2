@@ -248,10 +248,14 @@ export default function Home() {
                 <Check color="green" className='h-5 w-5' />
                   <span>	Designed for quick scanning, with emphasis on key phrases and visual cues. </span>
                 </li>
+                <li className="flex gap-2">
+                <XCircle className="h-5 w-5" color='red' />
+                  <span>Editor and Copilot available for all users.</span>
+                </li>
                 </ul>
                 <div className="mt-4 text-sm text-muted-foreground">
                   <p className="italic">
-                  Breaks down complex topics into digestible parts with minimal loss in depth. Inbuilt AI copilot to help you research and enrich mindmaps.
+                  Breaks down complex topics into digestible parts with minimal loss in depth.
                   </p>
                 </div>
               </div>
@@ -283,10 +287,14 @@ export default function Home() {
                 <XCircle className="h-5 w-5" color='red' />
                   <span>Lot of fluff and cumbersome clutter, lacking quick-scan features and prominent highlights. </span>
                 </li>
+                <li className="flex gap-2">
+                <XCircle className="h-5 w-5" color='red' />
+                  <span>Editor and Copilot locked behind paywall if available</span>
+                </li>
                 </ul>
                 <div className="mt-4 text-sm text-muted-foreground">
                   <p className="italic">
-                  Struggles to simplify without oversimplifying, often leading to superficial understanding. No inbuilt copilot.
+                  Struggles to simplify without oversimplifying, often leading to superficial understanding. 
                   </p>
                 </div>
               </div>
