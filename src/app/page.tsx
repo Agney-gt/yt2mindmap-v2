@@ -213,7 +213,7 @@ export default function Home() {
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
           <Image
-                    src="/comparison.webp"
+                    src="/Comparison.webp"
                     width={900}
                     height={630}
                     alt="MindMapAI founder working on the platform"
