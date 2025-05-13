@@ -2,6 +2,23 @@ import { NextResponse } from 'next/server';
 import { BlobServiceClient } from '@azure/storage-blob';
 import { getServerSession } from 'next-auth';
 import { v4 as uuidv4 } from 'uuid';
+interface BlobPrefix {
+  name: string;
+  // Add any other fields specific to BlobPrefix here
+}
+
+interface BlobItem {
+  name: string;
+  properties: {
+    lastModified?: Date;
+    // Add other properties as needed (like size, content type, etc.)
+  };
+  // Add any other fields specific to BlobItem here
+}
+
+type Blob = 
+  | ({ kind: "prefix" } & BlobPrefix) 
+  | ({ kind: "blob" } & BlobItem);
 
 const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING || '';
 const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
@@ -29,23 +46,37 @@ export async function GET() {
     const containerName = 'html';
     const containerClient = blobServiceClient.getContainerClient(containerName);
     const userFolder = `user-${session.user.email.split("@")[0]}`;
-    const mindmaps = [];
-  
-    for await (const blob of containerClient.listBlobsByHierarchy('/', { prefix: `${userFolder}/` })) {
+    
+    async function fetchBlobData(blob : Blob) {
       if (blob.kind === 'blob' && blob.name.endsWith('.html')) {
         const blobClient = containerClient.getBlockBlobClient(blob.name);
         const downloadResponse = await blobClient.download();
         const htmlContent = await streamToString(downloadResponse.readableStreamBody);
-  
+    
         const titleMatch = htmlContent.match(/<title[^>]*>\s*([^<]+?)\s*<\/title>/i);
         const title = titleMatch ? titleMatch[1] : 'Untitled';
-        mindmaps.push({
+    
+        return {
           id: blob.name.split('/').pop()?.replace('.html', '') || '',
           title,
-          createdAt: blob.properties.lastModified?.toISOString() || new Date().toISOString()
-        });
+          createdAt: blob.properties.lastModified?.toISOString() || new Date().toISOString(),
+        };
       }
+      return null;
     }
+
+    async function fetchMindmaps() {
+      const mindmapPromises = [];
+      for await (const blob of containerClient.listBlobsByHierarchy('/', { prefix: `${userFolder}/` })) {
+        mindmapPromises.push(fetchBlobData(blob));
+      }
+    
+      // Wait for all blob processing to complete
+      const results = await Promise.all(mindmapPromises);
+      return results.filter((item) => item !== null); // Remove nulls from failed fetches
+    }
+  
+    const mindmaps = await fetchMindmaps();
   
     return NextResponse.json(mindmaps.sort((a, b) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
