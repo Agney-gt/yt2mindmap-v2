@@ -2,7 +2,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle } from "lucide-react"
 import BuyButton from "@/components/buyButton"
-import { Button } from "@/components/ui/button"
 
 
 export default function PricingPage() {
@@ -98,48 +97,7 @@ export default function PricingPage() {
                 </CardContent>
                 
               </Card>
-              <Card>
-              <CardHeader>
-                  <CardTitle>Build</CardTitle>
-                  <CardDescription>For Entrepreneurs</CardDescription>
-                  <div className="mt-4 text-4xl font-bold">
-                    $9.95<span className="text-base font-normal text-muted-foreground"> for 150 a page E-Book</span>
-                  </div>
-                  
-                </CardHeader>
-              <CardContent>
-              <ul className="space-y-2 text-sm list-disc list-inside">
-                <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Unlock the “No API Key” Method</span>
-                </li>
-                <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Build on VC subsisdized AI</span>
-                </li>
-                <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span>The Jevons Paradox, Reimagined</span>
-                </li>
-                <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Abstraction vs Control</span>
-                </li>
-                <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Freemium Cloud Infrastructure </span>
-                </li>
-                <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Exploits and Tricks with Python and Javascript </span>
-                </li>
-              </ul>
-              <a href="https://payhip.com/b/IA5Yv" target="_blank" rel="noopener noreferrer">
-                      <Button className="mt-6 w-full">Buy Now!</Button>
-                    </a>
-                  <p className="mt-2 text-xs text-center text-muted-foreground">Its always the same old story</p>
-                </CardContent>
-                </Card>
+              
             </div>
           </div></div>
         </section>
