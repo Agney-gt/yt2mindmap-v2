@@ -18,10 +18,10 @@ export default function PricingPage() {
                 Simple, Transparent Pricing
               </h2>
               <p className="flex text-center justify-center  text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                To ensure a seamless experience for paying customers, will scale infrastructure based on demand so seats are limited. Get 40% off using code: 6FST916O3R.
+              To keep our prices low while maintaining a top-tier customer experience, we limit seats and build on VC-backed infrastructure that scales with demand. Secure your spot now and get 40% off with code: 6FST916O3R.
               </p>
               
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 ">
               <Card className="border bg-background">
                 <CardHeader>
                   <CardTitle>Free</CardTitle>
