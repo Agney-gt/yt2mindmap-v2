@@ -16,8 +16,8 @@ export default function BuyButton() {
   }, []);
 
   return (
-    
-      <Button className="mt-6 w-full">{count !== null ? `${count} seats remaining` : 'Loading...'}</Button>
-    
+    <div id="button" className={`${count >= 5 ? 'block' : 'hidden'}`}>
+      <Button className="mt-6 w-full">{count !== null && count >=5 ? `${count} seats remaining` : 'Loading...'}</Button>
+    </div>
   );
 }
