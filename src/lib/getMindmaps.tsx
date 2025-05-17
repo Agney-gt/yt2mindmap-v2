@@ -45,8 +45,7 @@ const blobServiceClient = BlobServiceClient.fromConnectionString(connectionStrin
       streamToString(htmlResponse.readableStreamBody || null),
     ]);
     const clean_html = removeHeaders(htmlContent)
-    console.log(clean_html)
-  
+    
     return {
       metadata: JSON.parse(metadataContent),
       clean_html,

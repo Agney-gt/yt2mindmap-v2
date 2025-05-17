@@ -77,8 +77,7 @@ export async function GET() {
     }
   
     const mindmaps = await fetchMindmaps();
-    console.log('mindmaps', mindmaps.length);
-  
+    
     return NextResponse.json(mindmaps.sort((a, b) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     ), { status: 200 });;

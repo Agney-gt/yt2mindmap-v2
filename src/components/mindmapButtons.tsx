@@ -19,14 +19,8 @@ function cleanParentheses(str : string) {
     iconMatches.push(match);
     return `__ICON_PLACEHOLDER_${iconMatches.length - 1}__`;
   });
-
-  // Step 2: Remove '(' unless part of '((' or adjacent to letters or preceded by ')' (to keep )text( pattern)
-  str = str.replace(/(?<!\()(?<![a-zA-Z0-9])\((?!\()(?<!\))(?<![a-zA-Z0-9])/g, '');
-
-  // Step 3: Remove ')' unless part of '))' or adjacent to letters or followed by '(' (to keep )text( pattern)
-  str = str.replace(/(?<!\))(?<![a-zA-Z0-9])\)(?!\))(?![a-zA-Z0-9])(?!\()/g, '');
-
-  // Step 4: Restore icon(...) placeholders
+  str = str.replace(/(?<!\()\((?!\()/g, '').replace(/(?<!\))\)(?!\))/g, '')  // remove ) not part of )) 
+  // Step 2: Restore icon(...) placeholders
   iconMatches.forEach((icon, idx) => {
     str = str.replace(`__ICON_PLACEHOLDER_${idx}__`, icon);
   });
