@@ -5,13 +5,13 @@ import { html } from "@codemirror/lang-html";
 import ModeSelector from "@/components/ModeSelector";
 import { Session } from "next-auth";
 import MindmapButtons from "@/components/mindmapButtons";
-
 export function MindmapEditor({ session, htmlContents }: { session: Session, htmlContents: string }) {
   const editorRef = useRef<EditorView | null>(null);
   const editorContainerRef = useRef<HTMLDivElement | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [htmlContent, setHtmlContent] = useState(htmlContents);
   const [taskId, setTaskId] = useState('');
+  
 
   // 1️⃣ Create editor once on mount
   useEffect(() => {
@@ -40,6 +40,7 @@ export function MindmapEditor({ session, htmlContents }: { session: Session, htm
 
   // 2️⃣ Update editor + iframe when htmlContents changes (e.g. from DB/API)
   useEffect(() => {
+    
     setHtmlContent(htmlContents);
     if (editorRef.current) {
       editorRef.current.dispatch({
