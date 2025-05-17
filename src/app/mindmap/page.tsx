@@ -17,7 +17,6 @@ export default async function MindmapPage({
 }) {
   const session = await getServerSession(authOptions);
   const mindmapId = await searchParams.then((params) => params.id);
-  
   let htmlContent = `1`;
   if (mindmapId) {
     const result = await getMindmapById(mindmapId as string);

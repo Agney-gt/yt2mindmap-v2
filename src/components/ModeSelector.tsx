@@ -11,7 +11,7 @@ import PricingPortal from "@/components/PricingPortal";
 //import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import { TaskadeSidebar } from "@/components/TaskadeSidebar";
-import { removeHeaders } from '@/lib/getMindmaps';
+import { removeHeaders } from '@/lib/utils';
 interface ModeSelectorProps {
   editorRef: React.RefObject<EditorView | null>;
   session: Session;
@@ -105,7 +105,6 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       const response = await fetch(`https://yt2mapapi.blob.core.windows.net/html/user-${userEmail.split('@')[0]}/${taskId}.html`, { cache: 'no-store' });
       const text = await response.text();
       const clean_text = removeHeaders(text)
-
       setHtmlContent(clean_text);
       if (editorRef.current) {
         editorRef.current.dispatch({
