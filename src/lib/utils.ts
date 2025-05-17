@@ -8,12 +8,12 @@ export function cn(...inputs: ClassValue[]) {
 export function removeHeaders(text: string) {
   // List of headers to be removed (including a space after the colon)
   const headers = [
-      "Quote: ", "Rhetoric: ", "Counterpoint: ", "Rhetoric: ","Real-world Example: ","Sociopolitical Factors: ",
-      "Cultural Reference: ", "Sociopolitical Context: ", "Challenge: ", "Technology: ", "Limitation: ",
-      "Misconception: ", "Framework: ", "Pitfall: ", "Analogy: ", 
-      "Thought Leader: ", "Method: ", "Case Study: ","Anecdote: ",
-      "Trend: ", "Nuanced Insight: ","Pattern: ", "Academic Theory: ",
-      "Appeal to Logic: ","Complexity: ", "Paradox: ", "Event: ", "Contradiction: ",
+      "Quote: ", "Rhetoric: ", "Counterpoint: ", "Rhetoric: ","Real-world Example: ","Sociopolitical Factors: ","Model: ",
+      "Cultural Reference: ", "Sociopolitical Context: ", "Challenge: ", "Technology: ", "Limitation: ","Statistic: ", 
+      "Misconception: ", "Framework: ", "Pitfall: ", "Analogy: ", "Policy: ","Cultural Insight: ", "Historical Insight: ",
+      "Thought Leader: ", "Method: ", "Case Study: ","Anecdote: ","Academic Insight: ", "Philosophical Context: ", "Scientific Insight: ",
+      "Trend: ", "Nuanced Insight: ","Pattern: ", "Academic Theory: "," Real-world Impact: ","Philosophy: ", "Scientific Theory: ",
+      "Appeal to Logic: ","Complexity: ", "Paradox: ", "Event: ", "Contradiction: ", "Theory: ", "Hypothesis: ", 
       "Data Point: ", "Metaphor", "Technological Innovation: ", "Historical Context: ","Cultural Context: ",
       "Economic Insight: ", "Psychological Insight: ", "Philosophical Insight: ", "Evidence: ", "Statistical Insight: ",
   ];
