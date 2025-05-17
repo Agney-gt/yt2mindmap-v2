@@ -7,6 +7,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 // import { getUserMindmaps } from '@/lib/getMindmaps';
 import { MindmapEditor } from "@/components/mirrorEditor";
 import { getMindmapById } from "@/lib/getMindmaps";
+import Head from "next/head"; // Import Head
 
 export default async function MindmapPage({
   searchParams,
@@ -29,7 +30,13 @@ export default async function MindmapPage({
   // const mindmaps = await getUserMindmaps(session.user.email);
   // console.timeEnd("getUserMindmaps");
   return (
-    
+    <>
+    <Head>
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          rel="stylesheet"
+        />
+      </Head>
     <div className="flex h-screen">
           {session && <div>
             {session && (
@@ -51,6 +58,6 @@ export default async function MindmapPage({
             
     </div>
           
-    
+    </>
   );
 }

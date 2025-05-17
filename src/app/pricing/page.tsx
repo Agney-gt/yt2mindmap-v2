@@ -40,7 +40,15 @@ export default function PricingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>No subscriptions, ever.</span>
+                      <span>No subscriptions, ever</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span>Create one mindmap at a time</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span>Slower Free Queue</span>
                     </li>
                   </ul>
                  
@@ -65,7 +73,7 @@ export default function PricingPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>Service Quality Assurance </span>
+                      <span>Faster Premium Queue </span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
@@ -86,6 +94,14 @@ export default function PricingPage() {
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
                       <span>Dedicated Infrastructure</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span>Create Multiple Mindmaps in Parallel</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span>Social media image generation script included</span>
                     </li>
                   </ul>
                     

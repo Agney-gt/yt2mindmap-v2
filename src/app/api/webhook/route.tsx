@@ -36,7 +36,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   
 
 
-    // Rate limit check
+    // Rate limit check if paid
     const { success, limit, remaining, reset } = await ratelimit.limit(ip);
     if (!success) {
       return NextResponse.json(

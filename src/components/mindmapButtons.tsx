@@ -12,6 +12,28 @@ interface mindmapButtonsProps {
   taskId: string;
 
 }
+function cleanParentheses(str : string) {
+  // Step 1: Protect icon(...) by replacing with placeholder tokens
+  const iconMatches : string[] = [];
+  str = str.replace(/icon\([^)]*\)/g, (match) => {
+    iconMatches.push(match);
+    return `__ICON_PLACEHOLDER_${iconMatches.length - 1}__`;
+  });
+
+  // Step 2: Remove '(' unless part of '((' or adjacent to letters or preceded by ')' (to keep )text( pattern)
+  str = str.replace(/(?<!\()(?<![a-zA-Z0-9])\((?!\()(?<!\))(?<![a-zA-Z0-9])/g, '');
+
+  // Step 3: Remove ')' unless part of '))' or adjacent to letters or followed by '(' (to keep )text( pattern)
+  str = str.replace(/(?<!\))(?<![a-zA-Z0-9])\)(?!\))(?![a-zA-Z0-9])(?!\()/g, '');
+
+  // Step 4: Restore icon(...) placeholders
+  iconMatches.forEach((icon, idx) => {
+    str = str.replace(`__ICON_PLACEHOLDER_${idx}__`, icon);
+  });
+
+  return str;
+}
+
 const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) => {
 
   const [saving, setSaving] = useState(false);
@@ -73,11 +95,12 @@ const  MindmapButtons = ({ editorRef, session, taskId }: mindmapButtonsProps) =>
                 const extracted = match? match[1] : "";
                 const cleaned = extracted
                   .replace(/\\n/g, '').replace(/\\/g, '')
-                  .replace(/(?<!\()\((?!\()/g, '')   // remove ( not part of ((
-                  .replace(/(?<!\))\)(?!\))/g, '')  // remove ) not part of ))
+                  //.replace(/(?<!\()\((?!\()/g, '')   // remove ( not part of ((
+                  //.replace(/(?<!\))\)(?!\))/g, '')  // remove ) not part of ))
                   .replace(/(\.\.\.|\[|\])/g, ''); // remove extra spaces
+                const result =  cleanParentheses(cleaned)  
                 const fullMatch = match? match[0]: "";
-                const updatedMatch = `<div class="mermaid">${cleaned}</div>`;
+                const updatedMatch = `<div class="mermaid">${result}</div>`;
                 const fixedContent = currentContent.replace(fullMatch, updatedMatch);
                 editorRef.current.dispatch({
                   changes: { from: 0, to: editorRef.current.state.doc.length, insert: fixedContent }
