@@ -11,6 +11,7 @@ import PricingPortal from "@/components/PricingPortal";
 //import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import { TaskadeSidebar } from "@/components/TaskadeSidebar";
+import { removeHeaders } from '@/lib/getMindmaps';
 interface ModeSelectorProps {
   editorRef: React.RefObject<EditorView | null>;
   session: Session;
@@ -103,12 +104,12 @@ const ModeSelector = ({ editorRef, session, setTaskId }: ModeSelectorProps) => {
       const userEmail = session?.user?.email || 'anonymous';
       const response = await fetch(`https://yt2mapapi.blob.core.windows.net/html/user-${userEmail.split('@')[0]}/${taskId}.html`, { cache: 'no-store' });
       const text = await response.text();
-      
+      const clean_text = removeHeaders(text)
 
-      setHtmlContent(text);
+      setHtmlContent(clean_text);
       if (editorRef.current) {
         editorRef.current.dispatch({
-          changes: { from: 0, to: editorRef.current.state.doc.length, insert: text },
+          changes: { from: 0, to: editorRef.current.state.doc.length, insert: clean_text },
         });
       }
     } catch (error) {

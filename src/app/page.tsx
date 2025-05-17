@@ -21,13 +21,13 @@ export default function Home() {
                   
                   <div className="mt-4 relative w-full max-w-[800px] aspect-[1574/832] overflow-hidden rounded-lg border bg-background shadow-xl">
                 <Image
-                  src="/mindmap+.webp"
-                  width={1574}
-                  height={832}
+                  src="/cover.jpg"
+                  width={1200}
+                  height={630}
                   alt="MindMapAI in action - converting a YouTube video into an interactive mind map"
                   className="object-cover w-full h-full "
                   priority
-                /><div className="absolute bottom-1 left-4 right-4 rounded-lg bg-background/90 p-2 backdrop-blur">
+                /><div className="absolute top-1 left-4 right-4 rounded-lg bg-background/90 p-2 backdrop-blur">
                 <p className="text-xs text-center sm:text-sm font-medium">
                 &quot;Thought long hours were key but 10 minutes of focused mapping supercharged my notes.&quot;
                 </p>
@@ -213,10 +213,10 @@ export default function Home() {
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
         <Image
                     src="/Comparison.webp"
-                    width={900}
+                    width={1200}
                     height={630}
                     alt="MindMapAI founder working on the platform"
-                    className="object-contain mt-8 md:ml-20"
+                    className="object-contain mt-8 "
                   />
           <div className="container px-4 md:px-6">
           

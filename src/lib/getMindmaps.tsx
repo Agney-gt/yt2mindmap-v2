@@ -2,7 +2,7 @@ import { BlobServiceClient } from '@azure/storage-blob';
 import { getServerSession } from 'next-auth';
 const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING || '';
 const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-function removeHeaders(text: string) {
+export function removeHeaders(text: string) {
   // List of headers to be removed (including a space after the colon)
   const headers = [
       "Quote: ", "Rhetoric: ", "Counterpoint: ", "Rhetoric: ","Real-world Example: ","Sociopolitical Factors: ",
@@ -12,7 +12,7 @@ function removeHeaders(text: string) {
       "Trend: ", "Nuanced Insight: ","Pattern: ", "Academic Theory: ",
       "Appeal to Logic: ","Complexity: ", "Paradox: ", "Event: ", "Contradiction: ",
       "Data Point: ", "Metaphor", "Technological Innovation: ", "Historical Context: ","Cultural Context: ",
-      "Economic Insight: ", "Psychological Insight: ", "Philosophical Insight: ",
+      "Economic Insight: ", "Psychological Insight: ", "Philosophical Insight: ", "Evidence: ", "Statistical Insight: ",
   ];
    // Create a regex pattern by joining all headers with '|'
    const pattern = new RegExp(headers.join("|"), "g");
