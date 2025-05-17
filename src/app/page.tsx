@@ -3,10 +3,13 @@ import Image from "next/image"
 import { BrainCog,Filter,MicOff,BedDouble,PenTool, Check, CheckCircle, Headphones, FastForward, VolumeX, SearchSlash, MoonStar, BookX, Lightbulb, XCircle } from "lucide-react"
 import SignInButton from "@/components/signInButton"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Head from "next/head"
 
 import PricingPage from "./pricing/page"
 export default function Home() {
   return (
+    <><Head><link rel="preload" as="image" href="/_next/image?url=%2Fcover.jpg&amp;w=1200&amp;q=75"></link>
+</Head>
     <div className="flex min-h-screen items-center flex-col">
       <main className="flex-1">
         {/* Hero Section */}
@@ -412,6 +415,6 @@ export default function Home() {
       
 
       
-    </div>
+    </div></>
   )
 }
